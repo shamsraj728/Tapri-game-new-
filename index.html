@@ -1,0 +1,3027 @@
+<!doctype html>
+<html lang="hi" style="background-color:#050508;background:#050508;color-scheme:dark">
+<head>
+<meta charset="utf-8">
+<script>
+document.documentElement.style.backgroundColor='#050508';
+document.documentElement.style.colorScheme='dark';
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#050508">
+<meta name="color-scheme" content="dark">
+<title>टपरी गेम · Tapri Game</title>
+<style>
+:root{
+  color-scheme: dark !important;
+  --bg: #0B132B !important;
+  --wall: #1C2541 !important;
+  --card: #1C2541 !important;
+  --ink: #F4D6B0 !important;
+  --mut: #8da4c4 !important;
+  --acc: #5BC0DE !important;
+  --gold: #D97706 !important;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top,0px);
+  padding-bottom: env(safe-area-inset-bottom,0px);
+}
+html,body{
+  margin:0;
+  min-height:100vh;
+  background-color:#050508 !important;
+  background:#0B132B fixed !important;
+  background-image:
+    radial-gradient(circle at 10% 40%, rgba(217, 119, 6, 0.16), transparent 45%),
+    radial-gradient(circle at 90% 30%, rgba(91, 192, 222, 0.18), transparent 50%),
+    radial-gradient(circle at 50% 85%, rgba(58, 80, 107, 0.3), transparent 60%) !important;
+  color:#F4D6B0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Baloo 2",system-ui,sans-serif;
+  font-weight:500;
+  -webkit-font-smoothing:antialiased;
+}
+#anime_loader{
+  position:fixed !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  background-color:#050508 !important;
+  background:#050508 !important;
+  z-index:999999 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+:root{
+  --bg: #0B132B !important;
+  --wall: #1C2541 !important;
+  --card: #1C2541 !important;
+  --ink: #F4D6B0 !important;
+  --mut: #8da4c4 !important;
+  --acc: #5BC0DE !important;
+  --ok: #40c057 !important;
+  --tube: #1c7ed6 !important;
+  --gold: #D97706 !important;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top,0px);
+  padding-bottom: env(safe-area-inset-bottom,0px);
+  color-scheme: dark !important;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0B132B !important;
+    --wall: #1C2541 !important;
+    --card: #1C2541 !important;
+    --ink: #F4D6B0 !important;
+    --mut: #8da4c4 !important;
+    --acc: #5BC0DE !important;
+    --ok: #40c057 !important;
+    --tube: #1c7ed6 !important;
+    --gold: #D97706 !important;
+    color-scheme: dark !important;
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{
+  margin:0;
+  min-height:100vh;
+  background:#0B132B fixed;
+  background-image:
+    radial-gradient(circle at 10% 40%, rgba(217, 119, 6, 0.16), transparent 45%),
+    radial-gradient(circle at 90% 30%, rgba(91, 192, 222, 0.18), transparent 50%),
+    radial-gradient(circle at 50% 85%, rgba(58, 80, 107, 0.3), transparent 60%);
+  color:#F4D6B0;
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  font-weight:500;
+  -webkit-font-smoothing:antialiased;
+}
+#app{max-width:440px;margin:0 auto;padding:14px 16px 88px;min-height:100vh}
+h1{font-size:36px;line-height:1.05;margin:6px 0;font-weight:800;letter-spacing:-0.5px}
+
+/* --- Claymorphism Buttons & Tactile Shadows --- */
+button{
+  font:inherit;
+  font-weight:700;
+  border:1.5px solid #3A506B;
+  border-radius:14px;
+  padding:10px 16px;
+  background:#1C2541;
+  color:#F4D6B0;
+  box-shadow:0 4px 14px rgba(11, 19, 43, 0.6),inset 0 1px 0 rgba(91, 192, 222, 0.15);
+  cursor:pointer;
+  transition:transform .12s ease,box-shadow .12s ease,background .12s ease,border-color .12s ease,color .12s ease;
+}
+button:hover{transform:translateY(-1.5px);background:#253256;border-color:#5BC0DE;color:#ffffff;box-shadow:0 6px 20px rgba(11, 19, 43, 0.8),0 0 12px rgba(91, 192, 222, 0.25)}
+button:active{transform:translateY(1px) scale(.98);background:#141b30}
+button:focus-visible,input:focus-visible{outline:2px solid #5BC0DE;outline-offset:2px}
+.pri{
+  background:linear-gradient(135deg, #D97706 0%, #b45309 100%) !important;
+  color:#ffffff !important;
+  font-size:18px !important;
+  font-weight:800 !important;
+  padding:12px 20px !important;
+  width:100%;
+  border:1.5px solid rgba(244, 214, 176, 0.5) !important;
+  box-shadow:0 6px 22px rgba(217, 119, 6, 0.45),inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+}
+.pri:hover{background:linear-gradient(135deg, #f59e0b 0%, #D97706 100%) !important;box-shadow:0 8px 26px rgba(217, 119, 6, 0.6) !important}
+
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:10px 0}
+.row>button{flex:1}
+.top{display:flex;justify-content:space-between;align-items:center;font-weight:700}
+
+/* --- Glassmorphism Floating Chips --- */
+.chip{
+  background:rgba(28, 37, 65, 0.88);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-radius:99px;
+  padding:5px 14px;
+  border:1.5px solid #3A506B;
+  box-shadow:0 4px 14px rgba(11, 19, 43, 0.6),inset 0 1px 0 rgba(91, 192, 222, 0.15);
+  color:#F4D6B0;
+  font-weight:700;
+  font-size:13px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+
+.scene{
+  background:repeating-linear-gradient(90deg,#ff4d6d 0 28px,#fff 28px 56px) top/100% 24px no-repeat,#ffc078;
+  padding:40px 14px 20px;
+  border-radius:24px;
+  text-align:center;
+  font-size:46px;
+  line-height:1.3;
+  margin:12px 0;
+  min-height:150px;
+  border-bottom:8px solid #e8590c;
+  box-shadow:0 10px 24px rgba(0,0,0,.12);
+}
+.scene small{display:inline-block;font-size:14px;color:#ffffff;background:#212529;padding:4px 14px;border-radius:99px;font-weight:800;margin-top:8px;box-shadow:0 4px 10px rgba(0,0,0,.25)}
+
+input{font:inherit;width:100%;padding:11px 14px;border-radius:12px;border:1.5px solid #3A506B;background:#0B132B;color:#F4D6B0;box-shadow:inset 0 2px 4px rgba(0,0,0,0.4)}
+input:focus{border-color:#5BC0DE !important;outline:2px solid #5BC0DE !important}
+.av button{font-size:28px;padding:6px 14px;border-radius:16px}.av .on{outline:3px solid var(--acc);background:#fff0f6}
+
+/* --- Glassmorphism Chai Trays (Cutting Chai Glasses) --- */
+.board{display:flex;flex-wrap:wrap;gap:14px 12px;justify-content:center;margin:18px 0}
+.tb{
+  width:56px;
+  height:184px;
+  border:2px solid rgba(58, 80, 107, 0.8);
+  border-top:0;
+  border-radius:0 0 22px 22px;
+  display:flex;
+  flex-direction:column-reverse;
+  padding:6px 3px;
+  background:linear-gradient(180deg, rgba(28, 37, 65, 0.45) 0%, rgba(11, 19, 43, 0.65) 100%);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  box-shadow:0 8px 24px rgba(11, 19, 43, 0.6),inset 0 1px 0 rgba(91, 192, 222, 0.2);
+  transition:transform .08s cubic-bezier(0.2,0.9,0.3,1),box-shadow .08s ease,border-color .08s ease;
+  cursor:pointer;
+  position:relative;
+}
+.tb::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;height:4px;
+  background:rgba(91, 192, 222, 0.4);
+  border-radius:2px 2px 0 0;
+}
+.tb.sel{
+  transform:translateY(-14px) scale(1.04);
+  border-color:#5BC0DE;
+  background:linear-gradient(180deg, rgba(91, 192, 222, 0.25) 0%, rgba(28, 37, 65, 0.6) 100%);
+  box-shadow:0 14px 28px rgba(91, 192, 222, 0.35),0 0 18px rgba(91, 192, 222, 0.4),inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.tb.hint{border-color:#D97706;box-shadow:0 0 22px rgba(217,119,6,0.65),inset 0 0 10px rgba(217,119,6,0.35)}
+.tb.lock{opacity:.6}
+
+.it{
+  font-size:32px;
+  line-height:40px;
+  height:40px;
+  text-align:center;
+  animation:pop .2s cubic-bezier(0.34,1.56,0.64,1);
+  filter:drop-shadow(0 3px 4px rgba(0,0,0,.18));
+}
+@keyframes pop{from{transform:scale(.6)}to{transform:scale(1)}}
+
+/* --- Glassmorphic Floating Modal --- */
+.ov{position:fixed;inset:0;background:rgba(11, 19, 43, 0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:18px 18px 84px;z-index:50}
+.md{
+  background:#1C2541;
+  border-radius:24px;
+  padding:22px;
+  width:100%;
+  max-width:420px;
+  max-height:86vh;
+  overflow:auto;
+  text-align:center;
+  border:2px solid #3A506B;
+  box-shadow:0 24px 50px rgba(11, 19, 43, 0.8),inset 0 1px 0 rgba(91, 192, 222, 0.2);
+  color:#F4D6B0;
+}
+.md h2{margin:0 0 10px;font-size:26px;font-weight:800;color:#F4D6B0 !important;letter-spacing:0.5px;text-shadow:0 0 16px rgba(217,119,6,0.35)}
+.md label{color:#5BC0DE !important;font-size:13px;font-weight:800;display:block;margin-bottom:4px}
+.md p{color:#F4D6B0}
+.md small{color:rgba(91,192,222,0.95)}
+.shop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#ffffff;
+  border:1.5px solid #dee2e6;
+  border-radius:18px;
+  padding:12px 14px;
+  margin:8px 0;
+  font-size:18px;
+  color:#212529;
+  font-weight:700;
+  box-shadow:0 4px 12px rgba(0,0,0,.06);
+}
+
+.cf{position:fixed;top:-40px;font-size:26px;animation:fall 2.2s linear forwards;z-index:10;pointer-events:none}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.cf,.it{animation:none}}
+
+/* --- Bento Grid Dashboard (बेंटो ग्रिड लेआउट) --- */
+.bento-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin:14px 0;
+}
+.bento-card{
+  padding:14px 12px;
+  border-radius:18px;
+  border:1.5px solid rgba(58, 80, 107, 0.7);
+  background:#1C2541;
+  box-shadow:0 6px 18px rgba(11, 19, 43, 0.6),inset 0 1px 0 rgba(91, 192, 222, 0.15);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.bento-card:hover{
+  transform:translateY(-2px);
+  border-color:#5BC0DE;
+  box-shadow:0 8px 24px rgba(11, 19, 43, 0.8),0 0 14px rgba(91, 192, 222, 0.2);
+}
+.bento-card:active{transform:translateY(1px) scale(.98)}
+.bento-hero{
+  grid-column:span 2;
+  padding:18px 16px;
+  background:linear-gradient(135deg, #D97706 0%, #b45309 100%) !important;
+  color:#ffffff !important;
+  box-shadow:0 10px 28px rgba(217, 119, 6, 0.4),inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+  border:1.5px solid rgba(244, 214, 176, 0.5) !important;
+}
+
+.gm{display:flex;flex-direction:column;min-height:calc(100dvh - 44px)}
+.gm .board{flex:1;align-content:center;margin:0}
+.chars{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:16px 0 0}
+.ch{text-align:center;width:48px}
+.bb{
+  background:#fff;
+  border-radius:14px;
+  font-size:20px;
+  color:#000;
+  box-shadow:0 3px 8px rgba(0,0,0,.12),inset 0 1px 2px rgba(255,255,255,.8);
+}
+.fc{font-size:32px;line-height:1.2}.ch.ok .bb{background:#8ce99a}
+.pbar{height:6px;border-radius:4px;background:#dee2e6;margin-top:4px;overflow:hidden}
+.pbar i{display:block;height:100%;border-radius:4px;background:#40c057}
+.msg{text-align:center;font-weight:700;margin:8px 0 0;color:#F4D6B0;min-height:22px}
+.fest{
+  background:#ffffff;
+  border:2.5px solid #f76707;
+  border-radius:18px;
+  padding:10px 14px;
+  text-align:center;
+  font-weight:800;
+  margin:10px 0;
+  color:#1a1a1a;
+  box-shadow:0 4px 14px rgba(247,103,7,.18);
+}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.grid div{background:#ffffff;border:1.5px solid #dee2e6;border-radius:16px;padding:10px 6px;font-size:13px;box-shadow:0 3px 8px rgba(0,0,0,.05);color:#212529;font-weight:700}
+.grid b{display:block;font-size:34px}
+.mi{display:flex;justify-content:space-between;align-items:center;background:#ffffff;border:1.5px solid #dee2e6;border-radius:16px;padding:10px 14px;margin:6px 0;text-align:left;color:#212529;font-weight:700;box-shadow:0 3px 8px rgba(0,0,0,.05)}
+.gm .row{flex-wrap:wrap}.gm .row button{padding:10px 8px;font-size:14px;flex:1 1 40%}
+.scene2{
+  border-radius:24px;
+  overflow:hidden;
+  margin:12px 0 6px;
+  border:4px solid #e8590c;
+  background:#fff;
+  box-shadow:0 10px 24px rgba(0,0,0,.12);
+}
+.scene2 svg{display:block;width:100%;height:auto;animation:pop .5s}
+.stg{height:10px;border-radius:6px;background:rgba(255,255,255,.7);overflow:hidden;margin:4px 0 12px}
+.stg i{display:block;height:100%;background:linear-gradient(90deg,#40c057,#fab005)}
+.map{
+  background:linear-gradient(135deg,#d9b382,#c69a5e);
+  border:4px solid #b98a47;
+  border-radius:22px;
+  padding:14px 10px;
+  margin:12px 0;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,.14);
+}
+.mr{display:flex;justify-content:space-between;position:relative}.mr::before{content:"";position:absolute;left:8%;right:8%;top:50%;border-top:5px dotted #8a5a2b}
+.nd{
+  position:relative;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  padding:0;
+  font-size:20px;
+  line-height:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  border:3px solid #fff;
+  box-shadow:0 4px 10px rgba(0,0,0,.15);
+}
+.nd small{font-size:11px;font-weight:800}
+.nd.dn{background:#40c057;color:#fff;font-size:11px}
+.nd.cur{background:#ff4d6d;color:#fff;animation:pulse 1s infinite}
+.nd.lk{background:#adb5bd;color:#495057;box-shadow:none}
+@keyframes pulse{50%{transform:scale(1.15)}}
+.fl{position:fixed;left:0;top:0;width:38px;font-size:30px;line-height:38px;text-align:center;z-index:11;pointer-events:none}
+#toast{
+  position:fixed;
+  left:50%;
+  bottom:24px;
+  transform:translate(-50%,40px);
+  background:rgba(33,37,41,.92);
+  backdrop-filter:blur(10px);
+  color:#fff;
+  padding:12px 20px;
+  border-radius:16px;
+  font-weight:700;
+  opacity:0;
+  transition:.25s cubic-bezier(0.34,1.56,0.64,1);
+  z-index:20;
+  max-width:90vw;
+  text-align:center;
+  pointer-events:none;
+  box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* --- 3D Worldwide Podium & Spatial Leaderboard Arena --- */
+.arena-3d{
+  perspective:900px;
+  transform-style:preserve-3d;
+  margin:10px 0 14px;
+}
+.podium-container{
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  gap:10px;
+  padding:14px 4px 6px;
+  background:linear-gradient(180deg,rgba(235,245,255,.9) 0%,rgba(208,235,255,.7) 100%);
+  border-radius:24px;
+  border:2px solid rgba(255,255,255,.9);
+  box-shadow:0 14px 30px rgba(24,100,171,.18),inset 0 2px 4px #fff,inset 0 -6px 12px rgba(0,0,0,.06);
+  position:relative;
+}
+.podium-col{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  position:relative;
+}
+.podium-col .avatar-badge{
+  font-size:32px;
+  margin-bottom:4px;
+  filter:drop-shadow(0 4px 8px rgba(0,0,0,.15));
+  position:relative;
+}
+.podium-col .crown{
+  position:absolute;
+  top:-16px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:18px;
+  animation:crownFloat 2s ease-in-out infinite alternate;
+}
+@keyframes crownFloat{from{transform:translate(-50%,0)}to{transform:translate(-50%,-5px)}}
+.podium-name{
+  font-size:12px;
+  font-weight:800;
+  color:#1a1a1a;
+  max-width:85px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  margin-bottom:4px;
+}
+.podium-stars{
+  font-size:11px;
+  font-weight:800;
+  color:#1864ab;
+  background:#fff;
+  padding:2px 8px;
+  border-radius:99px;
+  box-shadow:0 2px 5px rgba(0,0,0,.1);
+  margin-bottom:6px;
+}
+.podium-block{
+  width:100%;
+  border-radius:16px 16px 8px 8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-weight:800;
+  font-size:22px;
+  box-shadow:0 10px 20px rgba(0,0,0,.18),inset 0 3px 4px rgba(255,255,255,.8),inset 0 -5px 8px rgba(0,0,0,.2);
+  border:2px solid rgba(255,255,255,.6);
+  text-shadow:0 2px 4px rgba(0,0,0,.3);
+  position:relative;
+}
+.podium-1{
+  height:102px;
+  background:linear-gradient(135deg,#f59f00 0%,#d9480f 100%);
+}
+.podium-2{
+  height:76px;
+  background:linear-gradient(135deg,#adb5bd 0%,#495057 100%);
+}
+.podium-3{
+  height:58px;
+  background:linear-gradient(135deg,#d97706 0%,#92400e 100%);
+}
+.podium-block::after{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;height:8px;
+  background:rgba(255,255,255,.5);
+  border-radius:14px 14px 0 0;
+}
+.rank-card-3d{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#ffffff;
+  border:2px solid #e9ecef;
+  border-radius:18px;
+  padding:10px 14px;
+  margin:8px 0;
+  box-shadow:0 6px 14px rgba(0,0,0,.06),inset 0 2px 3px #fff,inset 0 -3px 4px rgba(0,0,0,.04);
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.rank-card-3d:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 20px rgba(0,0,0,.1);
+}
+.rank-card-me{
+  border:2.5px solid #2b8a3e !important;
+  background:linear-gradient(135deg,#ebfbee 0%,#d3f9d8 100%) !important;
+  box-shadow:0 8px 20px rgba(43,138,62,.25),inset 0 2px 3px #fff !important;
+  transform:scale(1.02);
+}
+
+
+/* --- Premium 6-Color Palette Architecture (#0B132B, #1C2541, #3A506B, #5BC0DE, #F4D6B0, #D97706) --- */
+:root{--ink:#F4D6B0;--mut:#8da4c4;--acc:#5BC0DE;--gold:#D97706}
+body, #app, p, div, span, small, label, h1, h2, b {
+  color: #F4D6B0;
+}
+button {
+  color: #F4D6B0 !important;
+  font-weight: 700 !important;
+}
+input {
+  color: #F4D6B0 !important;
+  font-weight: 600 !important;
+  border: 1.5px solid #3A506B !important;
+  background: #0B132B !important;
+}
+input::placeholder {
+  color: #8da4c4 !important;
+  font-weight: 500;
+}
+.chip {
+  color: #F4D6B0 !important;
+  font-weight: 700 !important;
+  border: 1.5px solid #3A506B !important;
+  background: #1C2541 !important;
+}
+#hm, #hn, #un, #tr, #rs, #ck, #lg, #rg, #gst, #fgt {
+  color: #F4D6B0 !important;
+  background: #1C2541 !important;
+  border: 1.5px solid #3A506B !important;
+}
+.gm .row button {
+  background: #1C2541 !important;
+  color: #F4D6B0 !important;
+  border: 1.5px solid #3A506B !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(11, 19, 43, 0.6) !important;
+}
+.gm .top button {
+  background: #1C2541 !important;
+  color: #F4D6B0 !important;
+  border: 1.5px solid #3A506B !important;
+  font-weight: 700 !important;
+}
+.bento-card:not(.bento-hero) {
+  border: 1.5px solid rgba(58, 80, 107, 0.7) !important;
+  background: #1C2541 !important;
+}
+.bento-card:not(.bento-hero) div {
+  color: #F4D6B0 !important;
+  font-weight: 700 !important;
+}
+.bento-card:not(.bento-hero) small {
+  color: #5BC0DE !important;
+  font-weight: 600 !important;
+}
+.pri, .pri * {
+  background: linear-gradient(135deg, #D97706 0%, #b45309 100%) !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+.bento-hero, .bento-hero * {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+/* Leaderboard 3D Podium colors aligned with the palette */
+.podium-container {
+  background: linear-gradient(180deg, #1C2541 0%, #0B132B 100%) !important;
+  border: 2px solid #3A506B !important;
+}
+.podium-block.podium-1 {
+  background: linear-gradient(135deg, #D97706 0%, #92400e 100%) !important;
+}
+.podium-block.podium-2 {
+  background: linear-gradient(135deg, #5BC0DE 0%, #3A506B 100%) !important;
+}
+.podium-block.podium-3 {
+  background: linear-gradient(135deg, #3A506B 0%, #1C2541 100%) !important;
+}
+.rank-card-3d {
+  background: #1C2541 !important;
+  border: 1.5px solid #3A506B !important;
+}
+.rank-card-3d span {
+  color: #F4D6B0 !important;
+}
+.rank-card-me {
+  border: 2px solid #5BC0DE !important;
+  background: rgba(91, 192, 222, 0.12) !important;
+  box-shadow: 0 0 16px rgba(91, 192, 222, 0.25) !important;
+}
+
+
+/* --- Character Pulls Form and Sits Directly Inside Round Circle Box --- */
+.login-stage {
+  position: relative;
+  padding: 10px 0;
+  overflow: visible;
+}
+.round-avatar-circle {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 3px solid #000000;
+  background: #ebfbee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.14), inset 0 2px 3px #fff;
+  position: relative;
+  overflow: visible;
+  flex-shrink: 0;
+}
+.char-actor {
+  position: absolute;
+  top: 19px;
+  left: 27px;
+  font-size: 38px;
+  line-height: 1;
+  z-index: 10;
+  animation: charWalkPullAndSitInCircle 4.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+}
+.char-speech {
+  position: absolute;
+  top: -44px;
+  left: -20px;
+  background: #ffffff;
+  color: #000000;
+  border: 2px solid #000000;
+  border-radius: 14px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  animation: speechTimeline 4.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  z-index: 15;
+}
+.char-speech::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 32px;
+  border-width: 6px 6px 0;
+  border-style: solid;
+  border-color: #000000 transparent;
+  display: block;
+  width: 0;
+}
+.login-card-pullable {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 2.5px solid #000000;
+  border-radius: 24px;
+  padding: 18px 16px;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.18), inset 0 2px 3px #fff;
+  transform: translateX(110vw);
+  animation: cardSlideIn 4.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes charWalkPullAndSitInCircle {
+  0% {
+    left: -70px;
+    top: 90px;
+    font-size: 48px;
+    transform: scaleX(1);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  28%, 45% {
+    left: 45%;
+    top: 70px;
+    font-size: 48px;
+    transform: scaleX(1);
+  }
+  50% {
+    left: 70%;
+    top: 70px;
+    font-size: 48px;
+    transform: scaleX(1);
+  }
+  60% {
+    left: 65%;
+    top: 70px;
+    font-size: 48px;
+    transform: scaleX(-1);
+  }
+  75% {
+    left: 40px;
+    top: 50px;
+    font-size: 44px;
+    transform: scaleX(-1);
+  }
+  88%, 100% {
+    left: 27px;
+    top: 19px;
+    font-size: 38px;
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes cardSlideIn {
+  0%, 25% {
+    transform: translateX(105vw);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  75%, 100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes speechTimeline {
+  0%, 15% {
+    opacity: 0;
+    transform: scale(0.7) translateY(8px);
+  }
+  25%, 55% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  70%, 100% {
+    opacity: 0;
+    transform: scale(0.8) translateY(-6px);
+  }
+}
+
+/* --- 1. Anime Sharingan & Rinnegan Boot Loader --- */
+#anime_loader {
+  position: fixed;
+  inset: 0;
+  background: #050508;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.7s;
+}
+#anime_loader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.loader-title {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ff4d6d, #fcc419, #7048e8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+.loader-subtitle {
+  color: #ffd43b;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px 14px;
+  border-radius: 99px;
+  border: 1px solid rgba(255, 212, 59, 0.35);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.eyes-container {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+}
+.anime-eye-frame {
+  width: 90px;
+  height: 48px;
+  border-radius: 90px / 48px;
+  background: #000;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid #343a40;
+  box-shadow: 0 0 25px rgba(255, 77, 109, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.anime-eye-iris {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: eyePhaseShift 3.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes eyePhaseShift {
+  0% {
+    background: radial-gradient(circle, #e03131 40%, #c92a2a 75%, #000 100%);
+    transform: rotate(0deg) scale(0.9);
+    box-shadow: 0 0 15px #e03131;
+  }
+  30% {
+    background: radial-gradient(circle, #ff0033 45%, #b00020 80%, #000 100%);
+    transform: rotate(360deg) scale(1);
+    box-shadow: 0 0 22px #ff0033;
+  }
+  65% {
+    background: radial-gradient(circle, #c92a2a 35%, #862e9c 75%, #000 100%);
+    transform: rotate(720deg) scale(1.05);
+    box-shadow: 0 0 28px #9775fa;
+  }
+  85%, 100% {
+    /* Rinnegan Stage */
+    background: radial-gradient(circle, #000 15%, #b197fc 30%, #7048e8 60%, #4c1d95 90%);
+    transform: rotate(1080deg) scale(1.1);
+    box-shadow: 0 0 35px #7048e8, 0 0 60px rgba(112, 72, 232, 0.5);
+  }
+}
+.tomoe-group {
+  position: absolute;
+  inset: 0;
+  animation: spinTomoe 3.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes spinTomoe {
+  0% { transform: rotate(0deg); opacity: 1; }
+  60% { transform: rotate(1080deg); opacity: 1; }
+  75%, 100% { transform: rotate(1440deg); opacity: 0; }
+}
+.tomoe {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: #000;
+  border-radius: 50%;
+}
+.tomoe::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 7px;
+  background: #000;
+  border-radius: 0 50% 50% 0;
+  top: 1px; left: 4px;
+  transform: rotate(-35deg);
+}
+.t1 { top: 6px; left: 18px; }
+.t2 { bottom: 8px; left: 8px; transform: rotate(120deg); }
+.t3 { bottom: 8px; right: 8px; transform: rotate(240deg); }
+.rinnegan-rings {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  opacity: 0;
+  animation: revealRinnegan 3.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes revealRinnegan {
+  0%, 65% { opacity: 0; }
+  80%, 100% {
+    opacity: 1;
+    background: repeating-radial-gradient(circle, transparent 0px, transparent 4px, #3b0764 5px, #3b0764 7px);
+  }
+}
+.loader-msg {
+  color: #adb5bd;
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 24px;
+}
+
+/* --- 3. AI Tapri Analytics Dashboard Card Styles --- */
+.dash-metric-card {
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 18px;
+  padding: 12px 14px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+  text-align: left;
+}
+.dash-metric-val {
+  font-size: 22px;
+  font-weight: 800;
+  color: #000000;
+  margin: 2px 0;
+}
+.dash-bar-wrap {
+  height: 10px;
+  border-radius: 6px;
+  background: #e9ecef;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.dash-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #4263eb, #20c997);
+}
+
+
+/* --- Next-Gen Floating Glass Capsule Dock (10 Next-Gen Navs Concept) --- */
+.floating-capsule-nav {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 28px);
+  max-width: 440px;
+  background: rgba(11, 19, 43, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 999px;
+  border: 1.5px solid #3A506B;
+  box-shadow: 0 16px 36px rgba(11, 19, 43, 0.7), inset 0 1px 0 rgba(91, 192, 222, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 6px 8px;
+  z-index: 120;
+  pointer-events: auto !important;
+  animation: navSlideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes navSlideUp {
+  from {
+    transform: translate(-50%, 80px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+.nav-tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  padding: 6px 10px !important;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: #adb5bd !important;
+  position: relative;
+  min-width: 58px;
+}
+.nav-tab-item .tab-icon {
+  font-size: 20px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  transition: transform 0.2s ease;
+}
+.nav-tab-item .tab-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: #adb5bd;
+  letter-spacing: -0.2px;
+  transition: color 0.2s ease;
+}
+.nav-tab-item:hover {
+  transform: translateY(-3px);
+  color: #ffffff !important;
+}
+.nav-tab-item:hover .tab-label {
+  color: #ffffff;
+}
+.nav-tab-item:hover .tab-icon {
+  transform: scale(1.15);
+}
+.nav-tab-item.active {
+  background: rgba(91, 192, 222, 0.16) !important;
+  color: #5BC0DE !important;
+  box-shadow: 0 2px 14px rgba(91, 192, 222, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(91, 192, 222, 0.45) !important;
+}
+.nav-tab-item.active .tab-label {
+  color: #5BC0DE;
+  font-weight: 800;
+}
+.nav-tab-item.active .tab-icon {
+  transform: scale(1.12);
+}
+
+
+/* --- Background Freeze System (सेटिंग्स या मॉडल खुलने पर बैकग्राउंड फ्रीज) --- */
+body.modal-open {
+  overflow: hidden !important;
+  touch-action: none !important;
+}
+#app.bg-frozen {
+  filter: blur(10px) brightness(0.65) saturate(0.85) !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  transition: filter 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+}
+#app.bg-frozen * {
+  animation-play-state: paused !important;
+}
+.dock-frozen {
+  /* Dock stays active, sharp, and clickable on top of frozen background */
+  z-index: 120 !important;
+  pointer-events: auto !important;
+  opacity: 1 !important;
+}
+
+</style></head><body style="background-color:#050508;background:#050508;margin:0;padding:0;color-scheme:dark">
+
+<!-- Anime Creator Boot Loader -->
+<div id="anime_loader" style="position:fixed;inset:0;width:100%;height:100%;background-color:#050508;background:#050508;z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+  <div class="loader-title">☕ TAPRI GAME · टपरी गेम</div>
+  <div class="loader-subtitle">✨ SHAMS RAZA · CREATOR GAME ✨</div>
+  <div class="eyes-container">
+    <div class="anime-eye-frame">
+      <div class="anime-eye-iris">
+        <div class="tomoe-group">
+          <div class="tomoe t1"></div>
+          <div class="tomoe t2"></div>
+          <div class="tomoe t3"></div>
+        </div>
+        <div class="rinnegan-rings"></div>
+      </div>
+    </div>
+    <div class="anime-eye-frame">
+      <div class="anime-eye-iris">
+        <div class="tomoe-group">
+          <div class="tomoe t1"></div>
+          <div class="tomoe t2"></div>
+          <div class="tomoe t3"></div>
+        </div>
+        <div class="rinnegan-rings"></div>
+      </div>
+    </div>
+  </div>
+  <div class="loader-msg" id="loader_status">Loading Game... By Shams Raza 🎮</div>
+</div>
+
+<div id="app"></div><div id="m"></div>
+<script>
+const ITEMS=['☕','🥟','🍩','🌶️','🍋','🥭','🍅','🫓'];
+const CUST=['👨‍🦱','👩‍🦰','👴','👵','🧑‍🎓','👨‍🍳','👮','🧕','👳','🧔','👩‍💼','🧑‍🎤'];
+const NAMES=[['शर्मा जी','Sharma ji'],['पिंकी','Pinky'],['दादाजी','Dadaji'],['दादी','Dadi'],['गोलू','Golu'],['शेफ़ भोलू','Chef Bholu'],['हवलदार','Havaldar'],['ज़ोया','Zoya'],['सरदार जी','Sardar ji'],['चाचा','Chacha'],['मैडम','Madam'],['रॉकी','Rocky']];
+function fest(){const d=new Date(Date.now()+19800000),m=d.getUTCMonth()+1,x=d.getUTCDate();if((m===10&&x>=20)||(m===11&&x<=15))return['🪔','दिवाली','Diwali'];if(m===3&&x<=20)return['🎨','होली','Holi'];if((m===3&&x>=26)||m===4||m===5)return['🏏','IPL','IPL'];return null}
+const UP=[['🪑',30,1],['🏮',60,1],['🪧',100,2],['🛵',160,3],['🏪',250,5],['🎆',400,8],['🧊',500,10],['🎵',650,12],['🪴',800,14],['📺',1000,16],['🛺',1300,18],['🔥',1600,21],['🤖',2000,24],['🚁',2600,27],['👑',3500,30],['🏆',5000,35]];
+const L={
+hi:{sub:'चाय की टपरी सजाओ, पज़ल सुलझाओ!',name:'अपना नाम लिखो',go:'शुरू करें',guest:'मेहमान बनकर खेलो',note:'प्रोफ़ाइल इसी फ़ोन में सेव होती है।',lvl:'लेवल',mv:'चालें',play:'खेलो',shop:'दुकान सजाओ',daily:'रोज़ का इनाम',set:'सेटिंग',undo:'पीछे',tray:'+ ट्रे (विज्ञापन)',re:'फिर से',win:'शाबाश!',next:'अगला लेवल',home:'घर',buy:'खरीदो',own:'मिल गया',need:'सिक्के कम हैं',claim:'इनाम लो',done:'आज का इनाम ले लिया। कल फिर आना!',ad:'डेमो: असली ऐप में यहाँ एक विज्ञापन चलेगा।',watch:'देख लिया',mus:'संगीत',snd:'आवाज़ें',lang:'भाषा: हिन्दी',out:'लॉग आउट',on:'चालू',off:'बंद',base:'तुम्हारी टपरी',close:'बंद करो',streak:'दिन लगातार',hi:'नमस्ते'},
+en:{sub:'Decorate your chai tapri, solve the puzzle!',name:'Enter your name',go:'Start',guest:'Play as guest',note:'Your profile is saved on this phone.',lvl:'Level',mv:'Moves',play:'Play',shop:'Upgrade tapri',daily:'Daily reward',set:'Settings',undo:'Undo',tray:'+ Tray (ad)',re:'Restart',win:'Well done!',next:'Next level',home:'Home',buy:'Buy',own:'Owned',need:'Not enough coins',claim:'Claim',done:'Reward claimed today. Come back tomorrow!',ad:'Demo: a real ad would play here.',watch:'Watched',mus:'Music',snd:'Sounds',lang:'Language: English',out:'Log out',on:'On',off:'Off',base:'Your tapri',close:'Close',streak:'day streak',hi:'Hello'}};
+Object.assign(L.hi,{hint:'💡 हिंट',tut:'कैसे खेलें',t1:'1. किसी ट्रे पर टैप करो, फिर दूसरी ट्रे पर। चीज़ें तभी जाती हैं जब ऊपर की चीज़ एक जैसी हो या ट्रे खाली हो।',t2:'2. एक ट्रे में एक ही तरह की 4 चीज़ें भरो। ऊपर खड़ा ग्राहक उसी का ऑर्डर माँग रहा है।',t3:'3. हरी पट्टी खत्म होने से पहले सर्व करो तो टिप मिलती है! अटक जाओ तो 💡 हिंट दबाओ।',ok:'समझ गया',tip:'टिप',lock:'🔒 ट्रे 6 चालों बाद खुलेगी',lose:'चालें खत्म!',more:'+5 चालें (विज्ञापन)',miss:'आज के मिशन',m1:'3 लेवल जीतो',m2:'10 ग्राहक सर्व करो',m3:'4 टिप कमाओ',chr:'किरदार',lb:'लीडरबोर्ड',lbn:'यह सिर्फ़ इसी फ़ोन के खिलाड़ियों की सूची है।',pack:'स्टार्टर पैक (डेमो)',packd:'🪙200 + विज्ञापन बंद',fest:'त्योहार बोनस: हर जीत पर +10 🪙',howto:'कैसे खेलें'});
+Object.assign(L.en,{hint:'💡 Hint',tut:'How to play',t1:'1. Tap a tray, then tap another. Items move only onto the same item or an empty tray.',t2:'2. Fill a tray with 4 of the same item. The customer on top wants exactly that.',t3:'3. Serve before the green bar runs out to earn a tip! Stuck? Press 💡 Hint.',ok:'Got it',tip:'Tip',lock:'🔒 Tray unlocks after 6 moves',lose:'Out of moves!',more:'+5 moves (ad)',miss:'Daily missions',m1:'Win 3 levels',m2:'Serve 10 customers',m3:'Earn 4 tips',chr:'Characters',lb:'Leaderboard',lbn:'Players on this phone only.',pack:'Starter pack (demo)',packd:'🪙200 + no ads',fest:'Festival bonus: +10 🪙 per win',howto:'How to play'});
+Object.assign(L.hi,{grew:'🏗️ तुम्हारी टपरी बड़ी हो गई!',upn:'अगला अपग्रेड: लेवल',maxst:'सबसे बड़ी टपरी, फ़ूड स्ट्रीट!'});Object.assign(L.en,{grew:'🏗️ Your tapri just grew!',upn:'Next upgrade: level',maxst:'Biggest tapri: a food street!'});
+Object.assign(L.hi,{adc:'विज्ञापन देखो, +25 🪙',adlim:'आज की विज्ञापन सीमा पूरी (5/5)। कल फिर आना!',adwait:'रुको...',adget:'इनाम लो',upg:'अपग्रेड (सिक्कों से)',iap:'पैसे से खरीदो',demo:'डेमो: असली पैसा नहीं कटता',noadsT:'विज्ञापन हटाओ (हमेशा)',bought:'डेमो खरीद पूरी'});Object.assign(L.en,{adc:'Watch ad, +25 🪙',adlim:'Daily ad limit reached (5/5). Come back tomorrow!',adwait:'Wait...',adget:'Claim',upg:'Upgrades (coins)',iap:'Buy with money',demo:'Demo: no real money is charged',noadsT:'Remove ads (forever)',bought:'Demo purchase done'});
+Object.assign(L.hi,{iapl:'पैसे वाली खरीदारी लेवल 15 के बाद खुलेगी'});Object.assign(L.en,{iapl:'Money purchases unlock at level 15'});
+Object.assign(L.hi,{pin:'PIN (4 से 8 अंक)',logb:'लॉगिन',reg:'नया खाता बनाओ',net:'इंटरनेट नहीं चल रहा, फिर कोशिश करो',relog:'फिर से लॉगिन करो',e1:'नाम कम से कम 3 अक्षर का हो',e2:'PIN 4 से 8 अंक का हो',wfail:'जीत सेव नहीं हो पाई। फिर से खेलो।',note:'तुम्हारी प्रोफ़ाइल ऑनलाइन सेव होती है। किसी भी फ़ोन पर नाम और PIN से खुलेगी।',lbn:'⚡ दुनिया भर के सभी असली खिलाड़ियों की रैंकिंग (100% Real Players, No Bots)'});Object.assign(L.en,{pin:'PIN (4 to 8 digits)',logb:'Log in',reg:'Create new account',net:'No internet, try again',relog:'Please log in again',e1:'Name needs at least 3 characters',e2:'PIN must be 4 to 8 digits',wfail:'Could not save the win. Play the level again.',note:'Your profile is saved online. Open it on any phone with your name and PIN.',lbn:'⚡ Global ranking of all real worldwide players (100% Real Players, No Bots)'});
+let LANG='en',S=null,G=null,AC=null,MU=null,AV='🧑';
+try{LANG=localStorage.getItem('tapri_lang')||'en'}catch(e){}
+const t=k=>L[LANG][k]||k;
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"'`]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','`':'&#96;'})[c]);
+
+const CHAR_ROSTER = [
+  { id: 0, icon: '🧑', name_hi: 'साधारण चायवाला', name_en: 'Chaiwala', cost: 0, desc_hi: 'क्लासिक टी-स्टॉल अवतार', desc_en: 'Default tea stall avatar' },
+  { id: 1, icon: '👨‍🦱', name_hi: 'शर्मा जी', name_en: 'Sharma ji', cost: 60, desc_hi: 'सवेरे के वफ़ादार नियमित ग्राहक', desc_en: 'Loyal morning customer' },
+  { id: 2, icon: '👩‍🦰', name_hi: 'पिंकी जी', name_en: 'Pinky', cost: 100, desc_hi: 'चाय व समोसे की शौकीन', desc_en: 'Chai & samosa enthusiast' },
+  { id: 3, icon: '🧑‍🎓', name_hi: 'गोलू (छात्र)', name_en: 'Golu (Student)', cost: 150, desc_hi: 'कॉलेज ग्रुप का होनहार छात्र', desc_en: 'College study group buddy' },
+  { id: 4, icon: '👨‍🍳', name_hi: 'शेफ़ भोलू', name_en: 'Chef Bholu', cost: 220, desc_hi: 'मसाला चाय और पकोड़े के उस्ताद', desc_en: 'Master chef of street snacks' },
+  { id: 5, icon: '👮', name_hi: 'हवलदार साहब', name_en: 'Havaldar', cost: 300, desc_hi: 'सड़क सुरक्षा और अनुशासन रक्षक', desc_en: 'Strict street duty guardian' },
+  { id: 6, icon: '👳', name_hi: 'सरदार जी', name_en: 'Sardar ji', cost: 400, desc_hi: 'खुशमिज़ाज और दिलदार दोस्त', desc_en: 'Jovial & big-hearted friend' },
+  { id: 7, icon: '👩‍💼', name_hi: 'ज़ोया (मैडम)', name_en: 'Madam Zoya', cost: 500, desc_hi: 'हाई-फ्लाइंग कॉरपोरेट एक्जीक्यूटिव', desc_en: 'High-flying corporate executive' },
+  { id: 8, icon: '🧑‍🎤', name_hi: 'रॉकस्टार रॉकी', name_en: 'Rockstar Rocky', cost: 650, desc_hi: 'टपरी रेडियो का रॉक स्टार', desc_en: 'Local musical sensation' },
+  { id: 9, icon: '🥷', name_hi: 'टपरी निंजा', name_en: 'Chai Ninja', cost: 850, desc_hi: 'बिजली जैसी फुर्तीला चाय मास्टर', desc_en: 'Ultra-fast stealth tea master' },
+  { id: 10, icon: '👑', name_hi: 'शाही चाय सम्राट', name_en: 'Tea King', cost: 1200, desc_hi: 'गोल्डन कप का महाराजा', desc_en: 'Royal emperor of Indian chai' }
+];
+
+const ALLOWED_AV = ['🧑', '👩', '👨', '🧒', '👨‍🦱', '👩‍🦰', '👴', '👵', '🧑‍🎓', '👨‍🍳', '👮', '🧕', '👳', '🧔', '👩‍💼', '🧑‍🎤', '🥷', '👑'];
+const safeAv = a => ALLOWED_AV.includes(a) ? a : '🧑';
+
+function sha256Sync(ascii) {
+  function rRot(v, amt) { return (v >>> amt) | (v << (32 - amt)); }
+  var p2_32 = Math.pow(2, 32);
+  var i, j, result = '', words = [];
+  var bitLen = ascii.length * 8;
+  var hash = [1779033703, 3144134277, 1013904242, 2773480762, 1359893119, 2600822924, 528734635, 1541459225];
+  var k = [1116352408, 1899447441, 3049323471, 3921009573, 961987163, 1508970993, 2453635748, 2870763221, 3624381080, 310598401, 607225278, 1426881987, 1925078388, 2162078206, 2614888103, 3248222580, 3835390401, 4022224774, 264347078, 604807628, 770255983, 1249150122, 1555081692, 1996064986, 2554220582, 2821834349, 2952996808, 3210303673, 3351605690, 3511394147, 3912952715, 303498848, 413411602, 532654359, 739348877, 964678452, 1162837696, 1320600835, 1450240992, 1686234866, 1874446682, 2172383429, 2368359562, 2422109116, 2757912167, 2901793041, 3225465664, 3516067338, 3620383047, 3901626861, 63085488, 310082324, 576355883, 891631249, 1145953777, 1335805448, 1426442647, 1874182820, 2038820948, 2210098000, 2377749040, 2779770772, 3072550974, 3209590742];
+  var w = [];
+  for (i = 0; i < bitLen; i += 8) words[i >> 5] |= (ascii.charCodeAt(i / 8) & 255) << (24 - i % 32);
+  words[bitLen >> 5] |= 128 << (24 - bitLen % 32);
+  words[(((bitLen + 64) >> 9) << 4) + 15] = bitLen;
+  for (i = 0; i < words.length; i += 16) {
+    for (j = 0; j < 16; j++) w[j] = words[i + j];
+    for (j = 16; j < 64; j++) {
+      var s0 = rRot(w[j - 15], 7) ^ rRot(w[j - 15], 18) ^ (w[j - 15] >>> 3);
+      var s1 = rRot(w[j - 2], 17) ^ rRot(w[j - 2], 19) ^ (w[j - 2] >>> 10);
+      w[j] = (w[j - 16] + s0 + w[j - 7] + s1) | 0;
+    }
+    var a = hash[0], b = hash[1], c = hash[2], d = hash[3], e = hash[4], f = hash[5], g = hash[6], h = hash[7];
+    for (j = 0; j < 64; j++) {
+      var s1 = rRot(e, 6) ^ rRot(e, 11) ^ rRot(e, 25);
+      var ch = (e & f) ^ ((~e) & g);
+      var t1 = (h + s1 + ch + k[j] + w[j]) | 0;
+      var s0 = rRot(a, 2) ^ rRot(a, 13) ^ rRot(a, 22);
+      var maj = (a & b) ^ (a & c) ^ (b & c);
+      var t2 = (s0 + maj) | 0;
+      h = g; g = f; f = e; e = (d + t1) | 0;
+      d = c; c = b; b = a; a = (t1 + t2) | 0;
+    }
+    hash[0] = (hash[0] + a) | 0; hash[1] = (hash[1] + b) | 0; hash[2] = (hash[2] + c) | 0; hash[3] = (hash[3] + d) | 0;
+    hash[4] = (hash[4] + e) | 0; hash[5] = (hash[5] + f) | 0; hash[6] = (hash[6] + g) | 0; hash[7] = (hash[7] + h) | 0;
+  }
+  for (i = 0; i < 8; i++) {
+    for (j = 3; j >= 0; j--) {
+      var byteVal = (hash[i] >> (8 * j)) & 255;
+      result += (byteVal < 16 ? '0' : '') + byteVal.toString(16);
+    }
+  }
+  return result;
+}
+
+
+// Dismiss anime loader smoothly after eye transformation
+function dismissAnimeLoader(onComplete) {
+  const ld = document.getElementById('anime_loader');
+  if (ld) {
+    setTimeout(() => {
+      const msg = document.getElementById('loader_status');
+      if (msg) {
+        msg.textContent = 'Game Ready! Welcome ☕ (By Shams Raza)';
+        msg.style.color = '#5BC0DE';
+      }
+    }, 2400);
+    setTimeout(() => {
+      ld.classList.add('fade-out');
+      setTimeout(() => {
+        try { ld.remove(); } catch(e) { ld.style.display = 'none'; }
+        window._animeLoaderDismissed = true;
+        if (typeof onComplete === 'function') onComplete();
+      }, 700);
+    }, 3600);
+  } else {
+    window._animeLoaderDismissed = true;
+    if (typeof onComplete === 'function') onComplete();
+  }
+}
+
+let Q=Promise.resolve();
+function toast(m){let e=$('#toast');if(!e){e=document.createElement('div');e.id='toast';document.body.appendChild(e)}e.textContent=m;e.className='on';clearTimeout(toast.t);toast.t=setTimeout(()=>{e.className=''},2600)}
+/* --- Local Storage & Offline Engine --- */
+const dayKey = (t = Date.now()) => new Date(t + 19800000).toISOString().slice(0, 10);
+const MT = [[3, 40], [10, 30], [4, 30]];
+
+
+/* --- Strict Schema Validator & Vibe-Coding Security Hardening Suite --- */
+const SchemaValidator = {
+  // Validate username strictly: 3-14 chars, alphanumeric, space, hindi unicode
+  validateUsername(name) {
+    if (typeof name !== 'string') return { ok: false, err: 'यूज़रनेम स्ट्रिंग होना चाहिए' };
+    const s = name.trim();
+    if (s.length < 3 || s.length > 14) return { ok: false, err: 'नाम 3 से 14 अक्षर के बीच होना चाहिए' };
+    // Allowed: letters, numbers, spaces, and Devanagari script (ऀ-ॿ)
+    const validPattern = /^[a-zA-Z0-9 _\u0900-\u097F]+$/;
+    if (!validPattern.test(s)) return { ok: false, err: 'नाम में केवल अक्षर, संख्या व स्पेस की अनुमति है' };
+    return { ok: true, val: s };
+  },
+
+  // Validate PIN strictly: 4 to 8 digits only
+  validatePin(pin) {
+    const s = String(pin || '').trim();
+    if (!/^\d{4,8}$/.test(s)) return { ok: false, err: 'PIN केवल 4 से 8 अंकों का होना चाहिए' };
+    return { ok: true, val: s };
+  },
+
+  // Validate game move log payload
+  validateMoveLog(log, maxTrays) {
+    if (!Array.isArray(log)) return false;
+    for (const entry of log) {
+      if (!Array.isArray(entry) || entry.length < 2) return false;
+      const type = entry[0];
+      if (type === 'm') {
+        if (entry.length !== 4) return false;
+        const [, time, from, to] = entry;
+        if (typeof time !== 'number' || time < 0) return false;
+        if (!Number.isInteger(from) || from < 0 || from >= maxTrays) return false;
+        if (!Number.isInteger(to) || to < 0 || to >= maxTrays) return false;
+      }
+    }
+    return true;
+  }
+};
+
+/* --- Exponential Backoff & Auth Rate Limiting --- */
+const AuthRateLimiter = {
+  attempts: {},
+
+  check(username) {
+    const key = (username || 'anon').toLowerCase().trim();
+    const now = Date.now();
+    const record = this.attempts[key] || { count: 0, lockUntil: 0 };
+    if (record.lockUntil > now) {
+      const waitSec = Math.ceil((record.lockUntil - now) / 1000);
+      return { allowed: false, waitSec };
+    }
+    return { allowed: true };
+  },
+
+  recordFailure(username) {
+    const key = (username || 'anon').toLowerCase().trim();
+    const now = Date.now();
+    const record = this.attempts[key] || { count: 0, lockUntil: 0 };
+    record.count++;
+    // Exponential backoff strategy
+    if (record.count >= 5) {
+      record.lockUntil = now + 300000; // 5 min lockout
+    } else if (record.count === 4) {
+      record.lockUntil = now + 60000;  // 1 min cooldown
+    } else if (record.count === 3) {
+      record.lockUntil = now + 15000;  // 15 sec delay
+    }
+    this.attempts[key] = record;
+  },
+
+  recordSuccess(username) {
+    const key = (username || 'anon').toLowerCase().trim();
+    delete this.attempts[key];
+  }
+};
+
+/* --- Admin Actions Security Audit Logger --- */
+const AdminAuditLogger = {
+  getLogs() {
+    try {
+      return JSON.parse(localStorage.getItem('tapri_admin_audit') || '[]');
+    } catch(e) { return []; }
+  },
+
+  log(action, status, details = '') {
+    const logs = this.getLogs();
+    const entry = {
+      t: new Date().toLocaleTimeString(),
+      d: new Date().toISOString().slice(0, 10),
+      action,
+      status, // 'SUCCESS' | 'DENIED' | 'EXEC'
+      details
+    };
+    logs.push(entry);
+    if (logs.length > 40) logs.shift();
+    try {
+      localStorage.setItem('tapri_admin_audit', JSON.stringify(logs));
+    } catch(e) {}
+  }
+};
+
+
+// Strict real-player filter: cleans out all old fake/dummy seed names
+const DUMMY_SEED_NAMES = new Set([
+  'aarav sharma', 'priya patel', 'rohan mehra', 'ananya roy', 'vikram singh',
+  'neha verma', 'kabir das', 'sneha kulkarni', 'arjun nair', 'zara khan',
+  'aditya rao', 'ishita gupta', 'rajesh kumar', 'simran kaur', 'dev joshi'
+]);
+
+function getCentralLeaderboard() {
+  let list = [];
+  try {
+    const raw = localStorage.getItem('tapri_global_leaderboard');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) {
+        list = parsed.filter(p => p && p.n && !DUMMY_SEED_NAMES.has(p.n.toLowerCase().trim()) && p.n.toLowerCase().trim() !== 'guest');
+      }
+    }
+  } catch(e) {}
+
+  // Gather all genuine registered accounts from this device
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith('tapri_u_')) {
+        const uName = key.replace('tapri_u_', '').trim();
+        if (uName && uName !== 'guest' && !DUMMY_SEED_NAMES.has(uName.toLowerCase())) {
+          try {
+            const acc = JSON.parse(localStorage.getItem(key));
+            if (acc && acc.name && acc.name !== 'guest') {
+              const existingIdx = list.findIndex(p => p.n.toLowerCase() === acc.name.toLowerCase());
+              if (existingIdx >= 0) {
+                list[existingIdx].st = Math.max(list[existingIdx].st || 0, acc.stars || 0);
+                list[existingIdx].lv = Math.max(list[existingIdx].lv || 1, acc.level || 1);
+                list[existingIdx].av = safeAv(acc.av);
+              } else {
+                list.push({
+                  n: acc.name,
+                  av: safeAv(acc.av),
+                  st: acc.stars || 0,
+                  lv: acc.level || 1
+                });
+              }
+            }
+          } catch(err) {}
+        }
+      }
+    }
+  } catch(e) {}
+
+  list.sort((a, b) => (b.st - a.st) || (b.lv - a.lv));
+  try {
+    localStorage.setItem('tapri_global_leaderboard', JSON.stringify(list.slice(0, 200)));
+  } catch(e) {}
+  return list;
+}
+
+function syncToCentralLeaderboard(user) {
+  if (!user || !user.name || user.name.toLowerCase() === 'guest' || DUMMY_SEED_NAMES.has(user.name.toLowerCase().trim())) return;
+  try {
+    const list = getCentralLeaderboard();
+    const idx = list.findIndex(p => p.n.toLowerCase() === user.name.toLowerCase().trim());
+    if (idx >= 0) {
+      list[idx].st = Math.max(list[idx].st || 0, user.stars || 0);
+      list[idx].lv = Math.max(list[idx].lv || 1, user.level || 1);
+      list[idx].av = safeAv(user.av);
+    } else {
+      list.push({
+        n: user.name.trim(),
+        av: safeAv(user.av),
+        st: user.stars || 0,
+        lv: user.level || 1
+      });
+    }
+    list.sort((a, b) => (b.st - a.st) || (b.lv - a.lv));
+    localStorage.setItem('tapri_global_leaderboard', JSON.stringify(list.slice(0, 200)));
+  } catch(e) {}
+}
+
+function localApi(a, d) {
+  const norm = n => String(n || '').replace(/[<>&"'`\/]/g, '').replace(/\s+/g, ' ').trim().slice(0, 14);
+  const getLocal = k => { try { return JSON.parse(localStorage.getItem(k)); } catch(e) { return null; } };
+  const setLocal = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch(e) {} };
+  
+  let curUserKey = 'tapri_local_cur';
+  let curUserName = '';
+  try { curUserName = localStorage.getItem(curUserKey) || ''; } catch(e) {}
+  
+  let u = curUserName ? getLocal('tapri_u_' + curUserName.toLowerCase()) : null;
+  
+  if (a === 'me') {
+    if (u) {
+      if (!u.ms || u.ms.d !== dayKey()) u.ms = { d: dayKey(), w: 0, s: 0, t: 0, c: [] };
+      if (!u.ad || u.ad.d !== dayKey()) u.ad = { d: dayKey(), n: 0, p: 0 };
+      u.day = dayKey();
+      S = u;
+      return { st: u };
+    }
+    return null;
+  }
+  
+  if (a === 'guest') {
+    u = {
+      name: 'guest',
+      av: safeAv((d && d.av) || AV),
+      pinHash: sha256Sync('guest:0000:tapri_salt_2026'),
+      coins: 60,
+      stars: 0,
+      level: 1,
+      up: [],
+      streak: 1,
+      last: '',
+      lst: {},
+      col: [],
+      ms: { d: dayKey(), w: 0, s: 0, t: 0, c: [] },
+      ad: { d: dayKey(), n: 0, p: 0 },
+      cheat: 0,
+      tut: 0,
+      music: true,
+      sfx: true,
+      day: dayKey(),
+      run: null
+    };
+    try { localStorage.setItem(curUserKey, 'guest'); } catch(e) {}
+    setLocal('tapri_u_guest', u);
+    S = u;
+    return { st: u };
+  }
+  
+  
+  if (a === 'reset_pin') {
+    const userVal = SchemaValidator.validateUsername(d.name);
+    if (!userVal.ok) return { err: userVal.err };
+    const pinVal = SchemaValidator.validatePin(d.newPin);
+    if (!pinVal.ok) return { err: pinVal.err };
+    if (d.newPin !== d.confirmPin) return { err: 'दोनों नया PIN एक जैसे होने चाहिए' };
+    
+    const uKey = 'tapri_u_' + userVal.val.toLowerCase();
+    const acc = getLocal(uKey);
+    if (!acc) return { err: 'यह अकाउंट मौजूद नहीं है' };
+
+    // 1. Device Ownership Verification
+    let localOwnerToken = '';
+    try { localOwnerToken = localStorage.getItem('tapri_owner_' + userVal.val.toLowerCase()) || ''; } catch(e) {}
+    const isOwnerDevice = acc.ownerToken ? (acc.ownerToken === localOwnerToken) : true;
+
+    if (!isOwnerDevice) {
+      AuthRateLimiter.recordFailure(userVal.val);
+      AdminAuditLogger.log('UNAUTHORIZED_RESET_BLOCKED', 'DENIED', `अन्य डिवाइस से '${userVal.val}' का पासवर्ड बदलने का प्रयास रोका गया`);
+      return { err: '🔒 अनधिकृत एक्सेस! आप इस अकाउंट के पंजीकृत ओनर नहीं हैं। किसी अन्य का अकाउंट रीसेट नहीं किया जा सकता।' };
+    }
+
+    // 2. Secret Recovery Key Verification (Strict - Zero Defaults)
+    const secWord = String(d.sec || '').trim().toLowerCase();
+    if (!secWord || secWord.length < 2) {
+      return { err: 'कृपया अपना सही निजी सुरक्षा शब्द दर्ज करें' };
+    }
+
+    const inputSecHash = sha256Sync(userVal.val.toLowerCase() + ':' + secWord + ':recovery_salt_2026');
+    if (acc.secHash) {
+      if (acc.secHash !== inputSecHash) {
+        AuthRateLimiter.recordFailure(userVal.val);
+        AdminAuditLogger.log('RESET_WRONG_ANSWER', 'DENIED', `यूज़र '${userVal.val}' पर गलत सुरक्षा शब्द दर्ज हुआ`);
+        return { err: '❌ गलत सुरक्षा कोड! केवल असली अकाउंट ओनर ही PIN बदल सकता है।' };
+      }
+    } else if (acc.secAns) {
+      if (acc.secAns.toLowerCase() !== secWord) {
+        AuthRateLimiter.recordFailure(userVal.val);
+        return { err: '❌ गलत सुरक्षा कोड! केवल असली अकाउंट ओनर ही PIN बदल सकता है।' };
+      }
+    }
+
+    // 3. Update PIN and Security Hash securely
+    const pinHash = sha256Sync(userVal.val.toLowerCase() + ':' + pinVal.val + ':tapri_salt_2026');
+    acc.pinHash = pinHash;
+    delete acc.pin;
+    acc.secHash = inputSecHash;
+    if (!acc.ownerToken) {
+      acc.ownerToken = sha256Sync(userVal.val + ':' + Date.now() + ':' + Math.random());
+      try { localStorage.setItem('tapri_owner_' + userVal.val.toLowerCase(), acc.ownerToken); } catch(e) {}
+    }
+    setLocal(uKey, acc);
+    AuthRateLimiter.recordSuccess(userVal.val);
+    AdminAuditLogger.log('PIN_RESET_AUTHORIZED', 'SUCCESS', `ओनर द्वारा यूज़र '${userVal.val}' का पासवर्ड सुरक्षित बदला गया`);
+    return { ok: true, name: userVal.val };
+  }
+
+  if (a === 'change_pin') {
+    if (!u || u.name === 'guest') return { err: 'मेहमान मोड में PIN नहीं बदल सकते' };
+    const oldPinVal = SchemaValidator.validatePin(d.oldPin);
+    if (!oldPinVal.ok) return { err: 'पुराना PIN सही नहीं है' };
+    const newPinVal = SchemaValidator.validatePin(d.newPin);
+    if (!newPinVal.ok) return { err: newPinVal.err };
+    if (d.newPin !== d.confirmPin) return { err: 'नया PIN और कन्फर्मेशन मेल नहीं खा रहे' };
+    if (d.oldPin === d.newPin) return { err: 'नया PIN पुराने PIN से अलग होना चाहिए' };
+
+    const oldHash = sha256Sync(u.name.toLowerCase() + ':' + d.oldPin + ':tapri_salt_2026');
+    const match = u.pinHash ? (u.pinHash === oldHash) : (u.pin === d.oldPin);
+    if (!match) return { err: 'पुराना PIN गलत है / Incorrect old PIN' };
+
+    const newHash = sha256Sync(u.name.toLowerCase() + ':' + d.newPin + ':tapri_salt_2026');
+    u.pinHash = newHash;
+    delete u.pin;
+    AdminAuditLogger.log('PIN_CHANGE_SETTINGS', 'SUCCESS', `यूज़र '${u.name}' का PIN बदला गया`);
+    return save({ ok: true });
+  }
+
+  if (a === 'reg' || a === 'login') {
+    const userVal = SchemaValidator.validateUsername(d.name);
+    if (!userVal.ok) { toast(userVal.err); return null; }
+    const pinVal = SchemaValidator.validatePin(d.pin);
+    if (!pinVal.ok) { toast(pinVal.err); return null; }
+    const name = userVal.val;
+    const pin = pinVal.val;
+
+    // Rate Limiting & Exponential Backoff Check
+    const rateCheck = AuthRateLimiter.check(name);
+    if (!rateCheck.allowed) {
+      toast(`🔒 बहुत सारे गलत प्रयास! कृपया ${rateCheck.waitSec} सेकंड बाद प्रयास करें।`);
+      return null;
+    }
+
+    const uKey = 'tapri_u_' + name.toLowerCase();
+    const existing = getLocal(uKey);
+    const pinHash = sha256Sync(name.toLowerCase() + ':' + pin + ':tapri_salt_2026');
+    if (a === 'reg') {
+      if (existing) { toast('यह नाम पहले से है / Username already exists'); return null; }
+      AuthRateLimiter.recordSuccess(name);
+      const secWord = String(d.sec || d.name || '').trim().toLowerCase();
+      const secHash = sha256Sync(name.toLowerCase() + ':' + secWord + ':recovery_salt_2026');
+      const ownerToken = sha256Sync(name + ':' + Date.now() + ':' + Math.random());
+      try { localStorage.setItem('tapri_owner_' + name.toLowerCase(), ownerToken); } catch(e) {}
+
+      u = {
+        name,
+        av: safeAv(d.av || AV),
+        pinHash,
+        secHash,
+        ownerToken,
+        coins: 50,
+        stars: 0,
+        level: 1,
+        up: [],
+        streak: 1,
+        last: '',
+        lst: {},
+        col: [],
+        ms: { d: dayKey(), w: 0, s: 0, t: 0, c: [] },
+        ad: { d: dayKey(), n: 0, p: 0 },
+        cheat: 0,
+        tut: 0,
+        music: true,
+        sfx: true,
+        track: 0,
+        tracks: [0],
+        day: dayKey(),
+        run: null
+      };
+      setLocal(uKey, u);
+      try { localStorage.setItem(curUserKey, name); } catch(e) {}
+      S = u;
+      syncToCentralLeaderboard(u);
+      return { st: u };
+    } else {
+      if (!existing || !(existing.pinHash ? (existing.pinHash === pinHash) : (existing.pin === pin))) {
+        AuthRateLimiter.recordFailure(name);
+        const nextCheck = AuthRateLimiter.check(name);
+        if (!nextCheck.allowed) {
+          toast(`🔒 गलत PIN! अकाउंट ${nextCheck.waitSec}s के लिए लॉक हो गया।`);
+        } else {
+          toast('नाम या PIN गलत / Incorrect Name or PIN');
+        }
+        return null;
+      }
+      AuthRateLimiter.recordSuccess(name);
+      if (!existing.pinHash) { existing.pinHash = pinHash; delete existing.pin; setLocal(uKey, existing); }
+      u = existing;
+      // When user logs in with valid PIN on any device, authorize this device
+      if (u.ownerToken) {
+        try { localStorage.setItem('tapri_owner_' + name.toLowerCase(), u.ownerToken); } catch(e) {}
+      }
+      try { localStorage.setItem(curUserKey, name); } catch(e) {}
+      S = u;
+      syncToCentralLeaderboard(u);
+      return { st: u };
+    }
+  }
+  
+  if (!u) {
+    if (S) u = S;
+    else {
+      u = {
+        name: 'guest',
+        av: safeAv(AV),
+        pinHash: sha256Sync('guest:0000:tapri_salt_2026'),
+        coins: 50,
+        stars: 0,
+        level: 1,
+        up: [],
+        streak: 1,
+        last: '',
+        lst: {},
+        col: [],
+        ms: { d: dayKey(), w: 0, s: 0, t: 0, c: [] },
+        ad: { d: dayKey(), n: 0, p: 0 },
+        cheat: 0,
+        tut: 0,
+        music: true,
+        sfx: true,
+        track: 0,
+        tracks: [0],
+        day: dayKey(),
+        run: null
+      };
+      S = u;
+    }
+  }
+  
+  const save = (extra = {}) => {
+    u.day = dayKey();
+    if (u.name) setLocal('tapri_u_' + u.name.toLowerCase(), u);
+    syncToCentralLeaderboard(u);
+    S = u;
+    return Object.assign({ st: u }, extra);
+  };
+  
+  if (a === 'logout') {
+    try { localStorage.removeItem(curUserKey); } catch(e) {}
+    S = null;
+    return { ok: true };
+  }
+  
+  if (a === 'prefs') {
+    if (typeof d.music === 'boolean') u.music = d.music;
+    if (typeof d.sfx === 'boolean') u.sfx = d.sfx;
+    if (d.tut === 1) u.tut = 1;
+    return save();
+  }
+  
+  if (a === 'start') {
+    const reqLvl = (Number.isInteger(d.lvl) && d.lvl >= 1 && d.lvl <= u.level) ? d.lvl : u.level;
+    u.run = { level: reqLvl, t0: Date.now() };
+    return save();
+  }
+  
+  if (a === 'win' || a === 'skip') {
+    const oldLevel = u.level;
+    const playedLvl = (d && Number.isInteger(d.lvl) && d.lvl >= 1 && d.lvl <= oldLevel) ? d.lvl : (u.run ? u.run.level : oldLevel);
+    const c = Math.min(3 + ((playedLvl - 1) >> 1), 8);
+    let mv = G ? G.mv : c * 2;
+    let tips = G ? G.tips : 1;
+    let st = 3;
+    if (a === 'win') {
+      st = mv <= c * 2.2 ? 3 : mv <= c * 3.2 ? 2 : 1;
+    } else {
+      mv = c;
+      tips = c;
+    }
+    const co = 10 + st * 5 + (fest() ? 10 : 0) + tips * 3;
+    u.coins += co;
+    u.lst = u.lst || {};
+    const oldSt = u.lst[playedLvl] || 0;
+    const bestSt = Math.max(oldSt, st);
+    u.lst[playedLvl] = bestSt;
+    const starGain = Math.max(0, bestSt - oldSt);
+    u.stars += starGain;
+    for (let i = 0; i < c; i++) {
+      const cu = (playedLvl + i) % 12;
+      if (!u.col.includes(cu)) u.col.push(cu);
+    }
+    if (!u.ms || u.ms.d !== dayKey()) u.ms = { d: dayKey(), w: 0, s: 0, t: 0, c: [] };
+    u.ms.w++;
+    u.ms.s += c;
+    u.ms.t += tips;
+    const isReplay = playedLvl < oldLevel;
+    if (!isReplay) {
+      u.level++;
+    }
+    u.run = null;
+    return save({ res: { st, co, tips, mv, replayed: isReplay, improved: starGain > 0, lvl: playedLvl, grew: !isReplay && stage(u.level) > stage(oldLevel) } });
+  }
+  
+  if (a === 'adstart') {
+    if (!u.ad || u.ad.d !== dayKey()) u.ad = { d: dayKey(), n: 0, p: 0 };
+    if (u.ad.n >= 5) return save({ lim: 1 });
+    u.ad.p = Date.now();
+    return save();
+  }
+  
+  if (a === 'adclaim') {
+    if (!u.ad || u.ad.d !== dayKey()) u.ad = { d: dayKey(), n: 0, p: 0 };
+    u.ad.n++;
+    u.ad.p = 0;
+    u.coins += 25;
+    return save();
+  }
+  
+  
+  if (a === 'buy_char') {
+    const cid = d.cid;
+    const item = CHAR_ROSTER.find(x => x.id === cid);
+    if (!item) return { err: 'अवैध कैरेक्टर' };
+    u.boughtChars = u.boughtChars || [0];
+    if (u.boughtChars.includes(cid)) return { err: 'यह कैरेक्टर पहले से आपके पास है' };
+    if (u.coins < item.cost) return { err: 'सिक्के कम हैं!' };
+    u.coins -= item.cost;
+    u.boughtChars.push(cid);
+    u.av = safeAv(item.icon);
+    AdminAuditLogger.log('BUY_CHARACTER', 'SUCCESS', `कैरेक्टर '${item.name_hi}' खरीदा`);
+    return save({ ok: true, bought: cid, av: u.av });
+  }
+
+  if (a === 'equip_char') {
+    const cid = d.cid;
+    const item = CHAR_ROSTER.find(x => x.id === cid);
+    if (!item) return { err: 'अवैध कैरेक्टर' };
+    u.boughtChars = u.boughtChars || [0];
+    if (!u.boughtChars.includes(cid) && item.cost > 0) return { err: 'पहले इसे खरीदें' };
+    u.av = safeAv(item.icon);
+    AdminAuditLogger.log('EQUIP_CHARACTER', 'SUCCESS', `कैरेक्टर '${item.name_hi}' पहना`);
+    return save({ ok: true, av: u.av });
+  }
+
+  if (a === 'buytrack') {
+    const tid = d.tid;
+    const tr = TRACKS.find(x => x.id === tid);
+    if (!tr) return { err: 'गलत ट्रैक' };
+    u.tracks = u.tracks || [0];
+    if (u.tracks.includes(tid)) return { err: 'पहले से खरीदा है' };
+    if (u.coins < tr.cost) return { err: 'सिक्के कम हैं' };
+    u.coins -= tr.cost;
+    u.tracks.push(tid);
+    u.track = tid;
+    return save();
+  }
+  if (a === 'settrack') {
+    const tid = d.tid;
+    u.tracks = u.tracks || [0];
+    if (!u.tracks.includes(tid)) return { err: 'यह ट्रैक अनलॉक नहीं है' };
+    u.track = tid;
+    return save();
+  }
+  if (a === 'buy') {
+    const i = d.i;
+    if (!Number.isInteger(i) || i < 0 || i >= UP.length) return { err: 'गलत अनुरोध' };
+    if (u.level < UP[i][2]) return { err: 'अभी बंद है' };
+    if (u.up.includes(i)) return { err: 'पहले से है' };
+    if (u.coins < UP[i][1]) return { err: 'सिक्के कम हैं' };
+    u.coins -= UP[i][1];
+    u.up.push(i);
+    return save();
+  }
+  
+  if (a === 'daily') {
+    const td = dayKey();
+    if (u.last === td) return { err: t('done') };
+    const yd = new Date(Date.now() - 864e5 + 19800000).toISOString().slice(0, 10);
+    u.streak = u.last === yd ? u.streak + 1 : 1;
+    u.coins += 20 + Math.min(u.streak, 7) * 5;
+    u.last = td;
+    return save();
+  }
+  
+  if (a === 'mission') {
+    const i = d.i;
+    if (!u.ms || u.ms.d !== dayKey()) u.ms = { d: dayKey(), w: 0, s: 0, t: 0, c: [] };
+    const v = [u.ms.w, u.ms.s, u.ms.t][i];
+    if (v < MT[i][0] || u.ms.c.includes(i)) return { err: 'मिशन पूरा नहीं हुआ' };
+    u.ms.c.push(i);
+    u.coins += MT[i][1];
+    return save();
+  }
+  
+  if (a === 'cheat') {
+    if (d && d.disable) {
+      u.cheat = 0;
+      AdminAuditLogger.log('CHEAT_MODE_DEACTIVATE', 'SUCCESS', 'चीट मोड बंद किया गया');
+      return save({ ok: true, disabled: true });
+    }
+    let raw = String(d.code || '').trim().toLowerCase();
+    let code = raw.replace(/\s+/g, "").replace(/[-_]+/g, '')
+      .replace(/०/g, '0').replace(/१/g, '1').replace(/२/g, '2').replace(/३/g, '3')
+      .replace(/४/g, '4').replace(/५/g, '5').replace(/६/g, '6').replace(/७/g, '7')
+      .replace(/८/g, '8').replace(/९/g, '9');
+    
+    // Verified developer secret codes: shamsraj@123 (with case & transliteration support)
+    const CHEAT_HASHES = new Set([
+      'f72729c04e86fd06d93692c86b68c3f0b4ee96f527a5c9be13205d38203c2fed', // shamsraj@123
+      'a101e8531d941af9c83d5d4e866e5ae2500454b1dc69894f69844649f165e1a4', // shamsraj123
+      'fa9b1bcff1d880c66a483f98401cecc54974c67cc18547ec3470915795d5b6ab', // shamraj@123
+      '83b698aeb2049d39a035446483bd661da12442862cc80406132cb831c483ceb9', // samraj@123
+      '3e7fadcbaa167e3712fcf2506d0763d5158c2095547b30599645decd2840022f', // शम्सराज@123
+      'b79531bdb1aad98e68a3dd3b795df6929388cded6ddbc796e6c94b1294edf5c2'  // shamsraj786 legacy
+    ]);
+    const ok = (code === 'shamsraj@123' || code === 'shamsraj123' || CHEAT_HASHES.has(sha256Sync('cheat:' + code)));
+    if (ok) {
+      if (!u.cheat) u.coins += 1000;
+      u.cheat = 1;
+      AdminAuditLogger.log('CHEAT_MODE_ACTIVATE', 'SUCCESS', 'मास्टर चीट कोड सक्रिय किया गया');
+    } else {
+      AdminAuditLogger.log('CHEAT_MODE_ATTEMPT', 'DENIED', 'अवैध चीट कोड प्रयास');
+    }
+    return save({ ok });
+  }
+  
+  if (a === 'lead') {
+    const list = getCentralLeaderboard();
+    const curName = (u && u.name && u.name !== 'guest') ? u.name.toLowerCase() : '';
+    
+    if (curName) {
+      const pIdx = list.findIndex(p => p.n.toLowerCase() === curName);
+      if (pIdx >= 0) {
+        list[pIdx].st = Math.max(list[pIdx].st || 0, u.stars || 0);
+        list[pIdx].lv = Math.max(list[pIdx].lv || 1, u.level || 1);
+        list[pIdx].av = safeAv(u.av);
+      } else {
+        list.push({ n: u.name, av: safeAv(u.av), st: u.stars || 0, lv: u.level || 1 });
+      }
+    }
+
+    list.sort((x, y) => (y.st - x.st) || (y.lv - x.lv));
+    const processed = list.map(p => Object.assign({}, p, {
+      me: !!(curName && p.n && p.n.toLowerCase() === curName)
+    }));
+    return { l: processed, st: u, global: true, total: processed.length };
+  }
+  
+  return { ok: true };
+}
+
+window._serverAvailable = null;
+const API_URL = '/api';
+
+async function call(a, d) {
+  const isHttp = typeof location !== 'undefined' && (location.protocol === 'http:' || location.protocol === 'https:');
+  if (isHttp && window._serverAvailable !== false) {
+    try {
+      const r = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.assign({ a }, d))
+      });
+      if (r.status === 404) {
+        window._serverAvailable = false;
+        return localApi(a, d);
+      }
+      const j = await r.json();
+      window._serverAvailable = true;
+      if (j.err === 'auth') {
+        if (S) logout(true);
+        else login();
+        return null;
+      }
+      if (j.err) {
+        toast(j.err);
+        return null;
+      }
+      if (j.st) S = j.st;
+      return j;
+    } catch (e) {
+      window._serverAvailable = false;
+      return localApi(a, d);
+    }
+  }
+  return localApi(a, d);
+}
+const api=(a,d)=>{const p=Q.then(()=>call(a,d));Q=p.catch(()=>0);return p};
+function logout(msg){clearInterval(MU);S=null;if(window._serverAvailable){try{fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:'{"a":"logout"}',keepalive:true}).catch(()=>{})}catch(e){}}try{localStorage.removeItem('tapri_tok');localStorage.removeItem('tapri_local_cur')}catch(e){}closeM();login();if(msg)toast(t('relog'))}
+/* audio: all generated in code */
+
+/* --- Smart Audio Lifecycle & Auto-Mute on App Exit / Screen Off / Phone Call --- */
+let APP_FOCUSED = true;
+
+function stopAudioCompletely() {
+  clearInterval(MU);
+  MU = null;
+  if (AC && AC.state === 'running') {
+    try { AC.suspend(); } catch(e) {}
+  }
+}
+
+function resumeAudioGracefully() {
+  if (!APP_FOCUSED || document.hidden) return;
+  if (AC && AC.state === 'suspended') {
+    try { AC.resume(); } catch(e) {}
+  }
+  if (S && S.music && !MU) {
+    music();
+  }
+}
+
+// 1. Phone screen off / locked, tab switch, app minimized or backgrounded
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    stopAudioCompletely();
+  } else {
+    resumeAudioGracefully();
+  }
+});
+
+// 2. Incoming phone calls, window blur, switching tasks/apps
+window.addEventListener('blur', () => {
+  APP_FOCUSED = false;
+  stopAudioCompletely();
+});
+
+window.addEventListener('focus', () => {
+  APP_FOCUSED = true;
+  resumeAudioGracefully();
+});
+
+// 3. Closing app, navigating away, tab killed
+window.addEventListener('pagehide', () => {
+  APP_FOCUSED = false;
+  stopAudioCompletely();
+});
+
+window.addEventListener('beforeunload', () => {
+  APP_FOCUSED = false;
+  stopAudioCompletely();
+});
+
+function ac(){if(!AC){try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(AC&&AC.state==='suspended')AC.resume();return AC}
+function tone(f,d,ty,v){if(document.hidden || !APP_FOCUSED) return; const a=ac();if(!a)return;const o=a.createOscillator(),g=a.createGain();o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(v,a.currentTime);g.gain.exponentialRampToValueAtTime(.0001,a.currentTime+d);o.connect(g);g.connect(a.destination);o.start();o.stop(a.currentTime+d)}
+const sfx=(f,d)=>{if(S&&S.sfx)tone(f,d||.1,'square',.06)};
+function hat(v){if(document.hidden || !APP_FOCUSED) return; const a=ac();if(!a)return;const b=a.createBuffer(1,Math.floor(a.sampleRate*.05),a.sampleRate),d=b.getChannelData(0);for(let k=0;k<d.length;k++)d[k]=(Math.random()*2-1)*(1-k/d.length);const s=a.createBufferSource(),g=a.createGain(),f=a.createBiquadFilter();f.type='highpass';f.frequency.value=6000;g.gain.value=v;s.buffer=b;s.connect(f);f.connect(g);g.connect(a.destination);s.start()}
+
+const TRACKS = [
+  {
+    id: 0,
+    icon: '☕',
+    name_hi: 'टपरी क्लासिक',
+    name_en: 'Tapri Classic',
+    cost: 0,
+    bpm: 290,
+    desc_hi: 'पारंपरिक चाय टपरी 8-बिट धुन',
+    desc_en: 'Traditional nostalgic chai stall tune',
+    mel: [76,0,79,76,74,72,74,76, 72,0,76,72,69,72,74,76, 76,0,72,69,72,76,79,76, 74,0,71,74,79,76,74,0],
+    ch: [[48,52,55],[45,48,52],[41,45,48],[43,47,50]]
+  },
+  {
+    id: 1,
+    icon: '🪕',
+    name_hi: 'देसी भांगड़ा बीट',
+    name_en: 'Desi Bhangra Beats',
+    cost: 80,
+    bpm: 230,
+    desc_hi: 'उत्साही ढोलक और लोक धुन',
+    desc_en: 'Energetic Punjabi dhol groove',
+    mel: [72,72,76,79,76,79,81,79, 76,76,74,72,74,76,74,0, 72,72,76,79,81,84,81,79, 76,74,72,74,72,0,72,0],
+    ch: [[48,55,60],[48,55,60],[41,48,53],[43,50,55]]
+  },
+  {
+    id: 2,
+    icon: '📻',
+    name_hi: '90s बॉलीवुड रेडियो',
+    name_en: '90s Bollywood Radio',
+    cost: 150,
+    bpm: 320,
+    desc_hi: 'रेट्रो कैसेट प्लेयर मेलोडी',
+    desc_en: 'Vintage radio cassette melody',
+    mel: [67,71,74,76,74,71,69,71, 72,76,79,81,79,76,74,72, 71,74,76,79,76,74,71,69, 67,69,71,74,72,71,67,0],
+    ch: [[43,47,50],[40,43,47],[36,40,43],[38,42,45]]
+  },
+  {
+    id: 3,
+    icon: '🪔',
+    name_hi: 'शाम की चाय चिल',
+    name_en: 'Sunset Chai Chill',
+    cost: 250,
+    bpm: 380,
+    desc_hi: 'शांतिपूर्ण राग भूपाली विश्राम धुन',
+    desc_en: 'Peaceful evening meditative tune',
+    mel: [72,0,74,0,76,0,79,0, 81,0,79,0,76,0,74,0, 76,0,79,0,81,0,84,0, 81,0,79,0,76,74,72,0],
+    ch: [[48,52,55],[45,48,52],[41,45,48],[43,47,50]]
+  },
+  {
+    id: 4,
+    icon: '⚡',
+    name_hi: 'टी-स्टॉल इलेक्ट्रो रश',
+    name_en: 'Chaiwala Electro Rush',
+    cost: 400,
+    bpm: 210,
+    desc_hi: 'सुपर फास्ट आर्केड बीट',
+    desc_en: 'Fast high-tempo arcade rush',
+    mel: [72,76,79,84,79,76,72,76, 74,77,81,86,81,77,74,77, 72,76,79,84,79,76,72,76, 71,74,77,83,77,74,71,0],
+    ch: [[48,52,55],[45,48,53],[48,52,55],[47,50,55]]
+  }
+];
+
+function music(){
+  clearInterval(MU);
+  MU = null;
+  if(!S || !S.music || document.hidden || !APP_FOCUSED) return;
+  const tid = S.track || 0;
+  const tr = TRACKS.find(t => t.id === tid) || TRACKS[0];
+  let i = 0;
+  const fq = m => 440 * Math.pow(2, (m - 69) / 12);
+  const mel = tr.mel;
+  const ch = tr.ch;
+  const tempo = tr.bpm || 290;
+  MU = setInterval(() => {
+    const bar = (i >> 3) & 3;
+    const p = i & 7;
+    const c = ch[bar % ch.length];
+    const n = mel[i % mel.length];
+    if(n) tone(fq(n), (tempo / 1000) * 1.05, 'triangle', 0.07);
+    if(p === 0) c.forEach(x => tone(fq(x + 12), (tempo / 1000) * 6, 'sine', 0.03));
+    if(p === 0 || p === 4) tone(fq(c[0] - 12), (tempo / 1000) * 1.5, 'sine', 0.11);
+    if(p === 0 || p === 4) tone(90, 0.14, 'sine', 0.12);
+    if(p === 2 || p === 6) tone(210, 0.09, 'triangle', 0.06);
+    if(p & 1) hat(0.05);
+    if(p === 5 && bar % 2) tone(fq(n || 72) + 2, 0.12, 'sine', 0.03);
+    i++;
+  }, tempo);
+}
+
+
+function ensurePersistentDock() {
+  let dock = document.getElementById('capsule_dock');
+  if (!dock) {
+    dock = document.createElement('div');
+    dock.id = 'capsule_dock';
+    dock.className = 'floating-capsule-nav';
+    dock.innerHTML = `
+      <button class="nav-tab-item active" id="nav_home">
+        <span class="tab-icon">🏠</span>
+        <span class="tab-label">${LANG==='en'?'Home':'होम'}</span>
+      </button>
+      <button class="nav-tab-item" id="nav_shop">
+        <span class="tab-icon">🛒</span>
+        <span class="tab-label">${t('shop')}</span>
+      </button>
+      <button class="nav-tab-item" id="nav_chars">
+        <span class="tab-icon">👥</span>
+        <span class="tab-label">${LANG==='en'?'Chars':'किरदार'}</span>
+      </button>
+      <button class="nav-tab-item" id="nav_rank">
+        <span class="tab-icon">🌍</span>
+        <span class="tab-label">${LANG==='en'?'Rank':'रैंक'}</span>
+      </button>
+      <button class="nav-tab-item" id="nav_set">
+        <span class="tab-icon">⚙️</span>
+        <span class="tab-label">${t('set')}</span>
+      </button>
+    `;
+    document.body.appendChild(dock);
+
+    document.getElementById('nav_home').onclick = () => {
+      sfx(660, 0.08);
+      closeM();
+      setActiveNavTab('home');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+    document.getElementById('nav_shop').onclick = () => {
+      sfx(660, 0.08);
+      setActiveNavTab('shop');
+      shop();
+    };
+    document.getElementById('nav_chars').onclick = () => {
+      sfx(660, 0.08);
+      setActiveNavTab('chars');
+      collect();
+    };
+    document.getElementById('nav_rank').onclick = () => {
+      sfx(660, 0.08);
+      setActiveNavTab('rank');
+      lead();
+    };
+    document.getElementById('nav_set').onclick = () => {
+      sfx(660, 0.08);
+      setActiveNavTab('set');
+      settings();
+    };
+  }
+  // Display only when user is logged in and not inside active puzzle screen
+  if (S && (!G || G.done)) {
+    dock.style.display = 'flex';
+  } else {
+    dock.style.display = 'none';
+  }
+}
+
+function setActiveNavTab(tabName) {
+  const tabs = {
+    home: document.getElementById('nav_home'),
+    shop: document.getElementById('nav_shop'),
+    chars: document.getElementById('nav_chars'),
+    rank: document.getElementById('nav_rank'),
+    set: document.getElementById('nav_set')
+  };
+  Object.keys(tabs).forEach(k => {
+    if (tabs[k]) {
+      if (k === tabName) tabs[k].classList.add('active');
+      else tabs[k].classList.remove('active');
+    }
+  });
+}
+
+/* modal with background freeze & timer pause */
+const modal = h => {
+  $('#m').innerHTML = '<div class="ov"><div class="md">' + h + '</div></div>';
+  const app = $('#app');
+  if (app) app.classList.add('bg-frozen');
+  document.body.classList.add('modal-open');
+  const dock = document.getElementById('capsule_dock');
+  if (dock) dock.classList.add('dock-frozen');
+  if (G && !G.done && !G.pauseStart) {
+    G.pauseStart = Date.now();
+  }
+};
+
+const closeM = () => {
+  $('#m').innerHTML = '';
+  const app = $('#app');
+  if (app) app.classList.remove('bg-frozen');
+  document.body.classList.remove('modal-open');
+  setActiveNavTab('home');
+  ensurePersistentDock();
+  if (G && G.pauseStart) {
+    G.t0 += (Date.now() - G.pauseStart);
+    G.pauseStart = null;
+  }
+};
+/* login */
+
+
+function registerModal() {
+  const curName = ($('#nm') ? $('#nm').value : '') || '';
+  const curPin = ($('#pin') ? $('#pin').value : '') || '';
+  modal(`<h2>📝 ${LANG==='hi'?'नया खाता बनाएं':'Create Account'}</h2>
+    <p style="font-size:13px;color:#F4D6B0;opacity:0.95;font-weight:700;margin:4px 0 12px">${LANG==='hi'?'नाम और पासवर्ड स्वतः भर दिए गए हैं। बस अपना नया सीक्रेट कोड दर्ज करें:':'Name & PIN are auto-filled. Just enter your secret code:'}</p>
+    <div style="text-align:left;margin:10px 0">
+      <label style="font-size:13px;font-weight:800;color:#5BC0DE">1. ${LANG==='hi'?'यूज़रनेम (नाम):':'Username:'}</label>
+      <input id="r_nm" maxlength="14" placeholder="${t('name')}" value="${esc(curName)}" style="margin-top:2px;background:#0B132B;color:#F4D6B0;font-weight:800;border:1.5px solid #3A506B;box-shadow:inset 0 2px 4px rgba(11,19,43,0.8)">
+    </div>
+    <div style="text-align:left;margin:10px 0">
+      <label style="font-size:13px;font-weight:800;color:#5BC0DE">2. ${LANG==='hi'?'पासवर्ड (PIN):':'Password (PIN):'}</label>
+      <input id="r_pin" type="password" inputmode="numeric" maxlength="8" placeholder="••••" value="${esc(curPin)}" style="margin-top:2px;background:#0B132B;color:#F4D6B0;font-weight:800;border:1.5px solid #3A506B;box-shadow:inset 0 2px 4px rgba(11,19,43,0.8)">
+    </div>
+    <div style="text-align:left;margin:10px 0">
+      <label style="font-size:13px;font-weight:800;color:#5BC0DE">3. ${LANG==='hi'?'नया सीक्रेट कोड बनाएं:':'Create New Secret Code:'}</label>
+      <input id="r_sec" type="password" placeholder="${LANG==='hi'?'यहाँ नया सीक्रेट कोड डालें...':'Enter new secret code here...'}" autofocus style="margin-top:2px;border:1.5px solid #D97706;background:#0B132B;color:#F4D6B0;font-weight:800;box-shadow:0 0 12px rgba(217,119,6,0.35),inset 0 2px 4px rgba(11,19,43,0.8)">
+      <small style="color:#5BC0DE;opacity:0.95;font-weight:700;font-size:11px;display:block;margin-top:4px">${LANG==='hi'?'यह कोड केवल आपको पता होना चाहिए, ताकि आपका अकाउंट हमेशा सुरक्षित रहे।':'Only you know this code. Protects your account from unauthorized changes.'}</small>
+    </div>
+    <div class="row" style="margin-top:16px">
+      <button class="pri" id="r_save" style="flex:2">✅ ${LANG==='hi'?'खाता बनाएं':'Create Account'}</button>
+      <button id="r_cancel" style="flex:1">${t('close')}</button>
+    </div>`
+  );
+
+  setTimeout(() => { if ($('#r_sec')) $('#r_sec').focus(); }, 120);
+
+  $('#r_cancel').onclick = () => { closeM(); };
+  $('#r_save').onclick = async () => {
+    const name = ($('#r_nm').value || '').trim();
+    const pin = ($('#r_pin').value || '').trim();
+    const sec = ($('#r_sec').value || '').trim();
+
+    if (!name) return toast(t('e1'));
+    if (!pin) return toast(t('e2'));
+    if (!sec) return toast(LANG==='hi'?'कृपया नया सीक्रेट कोड दर्ज करें':'Please enter your secret code');
+
+    const j = await api('reg', { name, pin, sec, av: AV });
+    if (j) {
+      closeM();
+      ac();
+      music();
+      home();
+    }
+  };
+}
+
+function forgotPinModal() {
+  const curName = ($('#nm') ? $('#nm').value : '') || '';
+  modal(`<h2>🔑 ${LANG==='hi'?'ओनर पासवर्ड रीसेट':'Owner PIN Reset'}</h2>
+    <div style="background:rgba(58,80,107,0.35);border:1.5px solid #3A506B;border-radius:14px;padding:9px 12px;margin:6px 0 12px;font-size:12px;color:#F4D6B0;text-align:left">
+      🛡️ <b>सुरक्षा लॉक:</b> केवल मूल अकाउंट ओनर ही अपना PIN बदल सकता है। किसी अन्य का अकाउंट रीसेट नहीं किया जा सकता।
+    </div>
+    <div style="text-align:left;margin:10px 0">
+      <label style="font-size:13px;font-weight:800;color:#5BC0DE">1. ${LANG==='hi'?'अपना यूज़रनेम (नाम):':'Username:'}</label>
+      <input id="f_nm" maxlength="14" placeholder="${t('name')}" value="${esc(curName)}" style="margin-top:2px;background:#0B132B;color:#F4D6B0;border:1.5px solid #3A506B">
+    </div>
+    <div style="text-align:left;margin:10px 0">
+      <label style="font-size:13px;font-weight:800;color:#5BC0DE">2. ${LANG==='hi'?'ओनर सुरक्षा शब्द / कोड (Security Answer):':'Owner Security Key / Word:'}</label>
+      <input id="f_ans" type="password" placeholder="${LANG==='hi'?'खाता बनाते समय दिया गया गुप्त शब्द':'Your private recovery word'}" style="margin-top:2px;background:#0B132B;color:#F4D6B0;border:1.5px solid #3A506B">
+    </div>
+    <div style="text-align:left;margin:10px 0">
+      <label style="font-size:13px;font-weight:800;color:#5BC0DE">3. ${LANG==='hi'?'नया PIN (4 से 8 अंक):':'New PIN (4 to 8 digits):'}</label>
+      <input id="f_npin" type="password" inputmode="numeric" maxlength="8" placeholder="••••" style="margin-top:2px;background:#0B132B;color:#F4D6B0;border:1.5px solid #3A506B">
+    </div>
+    <div style="text-align:left;margin:10px 0">
+      <label style="font-size:13px;font-weight:800;color:#5BC0DE">4. ${LANG==='hi'?'नया PIN दोबारा लिखें:':'Confirm New PIN:'}</label>
+      <input id="f_cpin" type="password" inputmode="numeric" maxlength="8" placeholder="••••" style="margin-top:2px;background:#0B132B;color:#F4D6B0;border:1.5px solid #3A506B">
+    </div>
+    <div class="row" style="margin-top:16px">
+      <button class="pri" id="f_save" style="flex:2">💾 ${LANG==='hi'?'PIN रीसेट करें':'Reset PIN'}</button>
+      <button id="f_cancel" style="flex:1">${t('close')}</button>
+    </div>`
+  );
+
+  // Fix: Explicitly close the modal overlay
+  $('#f_cancel').onclick = () => { closeM(); };
+  $('#f_save').onclick = async () => {
+    const name = ($('#f_nm').value || '').trim();
+    const sec = ($('#f_ans').value || '').trim();
+    const newPin = ($('#f_npin').value || '').trim();
+    const confirmPin = ($('#f_cpin').value || '').trim();
+
+    if (!name) return toast(t('e1'));
+    if (!sec) return toast(LANG==='hi'?'कृपया अपना ओनर सुरक्षा शब्द दर्ज करें':'Please enter your secret recovery word');
+    if (!newPin || !confirmPin) return toast('कृपया दोनों PIN भरें');
+    if (newPin !== confirmPin) return toast('दोनों PIN मेल नहीं खा रहे हैं');
+    if (!/^\d{4,8}$/.test(newPin)) return toast(t('e2'));
+
+    const j = await api('reset_pin', { name, sec, newPin, confirmPin });
+    if (j && j.ok) {
+      sfx(988, 0.25);
+      closeM(); // Close modal immediately
+      toast(LANG==='hi'?'🎉 आपका नया PIN सुरक्षित रीसेट हो गया!':'🎉 Your PIN was reset successfully!');
+      login();
+      if ($('#nm')) $('#nm').value = name;
+      if ($('#pin')) $('#pin').value = newPin;
+    }
+  };
+}
+
+function changePinModal() {
+  if (!S || S.name === 'guest') {
+    toast(LANG==='hi'?'मेहमान (Guest) मोड में PIN नहीं बदल सकते।':'Cannot change PIN in guest mode.');
+    return;
+  }
+  modal(`<h2>🔐 ${LANG==='hi'?'PIN / पासवर्ड बदलें':'Change PIN / Password'}</h2>
+    <p style="font-size:13px;color:#F4D6B0;opacity:0.9;margin:4px 0 12px">${LANG==='hi'?'अकाउंट (' + esc(S.name) + ') का नया PIN सेट करें:':'Update PIN for ' + esc(S.name) + ':'}</p>
+    <div style="text-align:left;margin:10px 0">
+      <label style="font-size:13px;font-weight:800;color:#5BC0DE">1. ${LANG==='hi'?'वर्तमान (पुराना) PIN:':'Current (Old) PIN:'}</label>
+      <input id="c_opin" type="password" inputmode="numeric" maxlength="8" placeholder="••••" style="margin-top:2px;background:#0B132B;color:#F4D6B0;border:1.5px solid #3A506B">
+    </div>
+    <div style="text-align:left;margin:10px 0">
+      <label style="font-size:13px;font-weight:800;color:#5BC0DE">2. ${LANG==='hi'?'नया PIN (4 से 8 अंक):':'New PIN (4 to 8 digits):'}</label>
+      <input id="c_npin" type="password" inputmode="numeric" maxlength="8" placeholder="••••" style="margin-top:2px;background:#0B132B;color:#F4D6B0;border:1.5px solid #3A506B">
+    </div>
+    <div style="text-align:left;margin:10px 0">
+      <label style="font-size:13px;font-weight:800;color:#5BC0DE">3. ${LANG==='hi'?'नया PIN दोबारा लिखें:':'Confirm New PIN:'}</label>
+      <input id="c_cpin" type="password" inputmode="numeric" maxlength="8" placeholder="••••" style="margin-top:2px;background:#0B132B;color:#F4D6B0;border:1.5px solid #3A506B">
+    </div>
+    <div class="row" style="margin-top:16px">
+      <button class="pri" id="c_save" style="flex:2">💾 ${LANG==='hi'?'अपडेट करें':'Update PIN'}</button>
+      <button id="c_cancel" style="flex:1">${t('close')}</button>
+    </div>`
+  );
+
+  $('#c_cancel').onclick = () => { closeM(); };
+  $('#c_save').onclick = async () => {
+    const oldPin = ($('#c_opin').value || '').trim();
+    const newPin = ($('#c_npin').value || '').trim();
+    const confirmPin = ($('#c_cpin').value || '').trim();
+
+    if (!oldPin || !newPin || !confirmPin) return toast('कृपया सभी फील्ड्स भरें');
+    if (newPin !== confirmPin) return toast('नया PIN मेल नहीं खा रहा');
+    if (!/^\d{4,8}$/.test(newPin)) return toast(t('e2'));
+    if (oldPin === newPin) return toast('नया PIN पुराने PIN से अलग होना चाहिए');
+
+    const j = await api('change_pin', { oldPin, newPin, confirmPin });
+    if (j && j.ok) {
+      sfx(988, 0.25);
+      closeM();
+      toast(LANG==='hi'?'🎉 आपका PIN सफलतापूर्वक बदल दिया गया!':'🎉 PIN changed successfully!');
+      settings();
+    }
+  };
+}
+
+let LOGIN_ANIM_PLAYED = false;
+function login(){
+const d = document.getElementById('capsule_dock'); if(d) d.style.display='none';
+const last=(()=>{try{return localStorage.getItem('tapri_last')||''}catch(e){return''}})();
+const shouldAnimate = !LOGIN_ANIM_PLAYED;
+LOGIN_ANIM_PLAYED = true;
+
+const actorStyle = shouldAnimate ? '' : 'animation:none;left:27px;top:19px;';
+const cardStyle = shouldAnimate ? '' : 'animation:none;transform:none;';
+const speechHtml = shouldAnimate ? `<div class="char-speech" id="c_sp">${LANG==='hi'?'नमस्ते! रुको, मैं लॉगिन ला रहा हूँ! 🤝':'Wait! Let me grab login for you! 🤝'}</div>` : '';
+
+$('#app').innerHTML=`<div class="top"><span></span><button id="lg" style="background:#ffffff;color:#000000;font-weight:800;border:2px solid #000000;padding:6px 14px;border-radius:14px">🌐 ${LANG==='en'?'Language: English (Change)':'भाषा: हिन्दी (बदलें)'}</button></div>
+<div class="scene">🛖☕🥟<small style="background:#000000;color:#ffffff;border:2px solid #000000">${t('sub')}</small></div>
+<h1 style="color:#F4D6B0;margin:10px 0 6px;letter-spacing:1px;text-shadow:0 0 16px rgba(217,119,6,0.35)">☕ Tapri Game<br><span style="font-size:22px;color:#5BC0DE;font-weight:800;letter-spacing:0.5px">टपरी गेम</span></h1>
+
+<div class="login-stage">
+  <div class="char-actor" style="${actorStyle}">
+    ${speechHtml}
+    <span id="actor_av">${safeAv(AV)}</span>
+  </div>
+
+  <div class="login-card-pullable" style="${cardStyle}">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+      <div class="round-avatar-circle" id="target_circle">
+        <span style="opacity:0.25;font-size:22px">🪑</span>
+      </div>
+      <div style="flex:1;text-align:left">
+        <div style="font-size:12px;font-weight:800;color:#000;margin-bottom:4px">${LANG==='hi'?'अवतार चुनें:':'Choose Avatar:'}</div>
+        <div class="av row" style="justify-content:flex-start;margin:0;gap:8px">${['🧑','👩','👨','🧒'].map(a=>`<button data-a="${a}" class="${a===AV?'on':''}" style="border:2px solid #000000;border-radius:50%;width:38px;height:38px;padding:0;font-size:20px;display:inline-flex;align-items:center;justify-content:center;background:${a===AV?'#ebfbee':'#ffffff'};color:#000000">${a}</button>`).join('')}</div>
+      </div>
+    </div>
+    <input id="nm" maxlength="14" placeholder="${t('name')}" value="${last}" autocomplete="username" style="color:#000000;font-weight:800;border:2.5px solid #000000;background:#ffffff">
+    <input id="pin" type="password" inputmode="numeric" maxlength="8" placeholder="${t('pin')}" autocomplete="current-password" style="margin-top:8px;color:#000000;font-weight:800;border:2.5px solid #000000;background:#ffffff">
+    <div class="row" style="margin-top:10px"><button class="pri" id="go" style="background:#ff4d6d;color:#ffffff;font-weight:800;border:2px solid #000000">${t('logb')}</button></div>
+    <div class="row"><button id="rg" style="background:#ffffff;color:#000000;font-weight:800;border:2px solid #000000;width:100%">📝 ${t('reg')}</button></div>
+    <div class="row"><button id="gst" style="background:#ffffff;color:#000000;font-weight:800;font-size:18px;width:100%;border:2px solid #000000;box-shadow:0 6px 14px rgba(0,0,0,0.12)">⚡ ${t('guest')}</button></div>
+    <div class="row" style="margin-top:6px"><button id="fgt" style="background:transparent;box-shadow:none;color:#000000;font-size:15px;font-weight:800;width:100%;text-decoration:underline">🔑 ${LANG==='hi'?'PIN / पासवर्ड भूल गए? (Reset PIN)':'Forgot PIN / Password?'}</button></div>
+  </div>
+</div>
+<p style="color:#F4D6B0;opacity:0.92;font-size:13px;font-weight:700;margin-top:8px;text-align:center">${t('note')}</p>`;
+
+if (shouldAnimate) {
+  setTimeout(() => {
+    const sp = document.getElementById('c_sp');
+    if (sp) {
+      setTimeout(() => {
+        if (sp) sp.textContent = LANG === 'hi' ? 'यह रहा आपका फॉर्म! ☕' : 'Here is your form! ☕';
+      }, 3800);
+      setTimeout(() => {
+        if (sp) sp.textContent = LANG === 'hi' ? 'आराम से भरें! ☕' : 'Take your time! ☕';
+      }, 5200);
+    }
+  }, 100);
+}
+$('#lg').onclick=()=>{LANG=LANG==='en'?'hi':'en';try{localStorage.setItem('tapri_lang',LANG)}catch(e){}login();if(typeof ensurePersistentDock==='function'&&document.getElementById('capsule_dock')){document.getElementById('capsule_dock').remove();ensurePersistentDock();}};
+document.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{
+  AV=safeAv(b.dataset.a);
+  const act = document.getElementById('actor_av');
+  if(act) act.textContent = AV;
+  login();
+});
+const go=async k=>{const name=($('#nm').value||'').trim(),pin=($('#pin').value||'').trim();if(name.length<3)return toast(t('e1'));if(!/^\d{4,8}$/.test(pin))return toast(t('e2'));const j=await api(k,{name,pin,av:AV});if(!j)return;try{localStorage.removeItem('tapri_tok');localStorage.setItem('tapri_last',j.st.name)}catch(e){}ac();music();home()};
+$('#go').onclick=()=>go('login');$('#rg').onclick=()=>registerModal();
+$('#gst').onclick=async()=>{const j=await api('guest',{av:AV});if(!j)return;try{localStorage.removeItem('tapri_tok');localStorage.setItem('tapri_last','guest')}catch(e){}ac();music();home()};
+if($('#fgt'))$('#fgt').onclick=forgotPinModal;
+}
+async function boot() {
+  try { localStorage.removeItem('tapri_tok'); } catch(e) {}
+  
+  // Kick off auth check concurrently in background while anime animation plays smoothly
+  const authPromise = api('me').catch(() => null);
+
+  dismissAnimeLoader(async () => {
+    const j = await authPromise;
+    if (j) {
+      music();
+      home();
+    } else {
+      login();
+    }
+  });
+}
+
+function musicShop(){
+  const curTrack = S.track || 0;
+  const unlocked = S.tracks || [0];
+  modal(`<h2>📻 ${LANG==='hi'?'म्यूजिक कैसेट रेडियो':'Music Cassette Radio'}</h2>
+    <p style="font-size:16px;margin:4px 0 10px">🪙 ${S.coins}</p>
+    <div style="max-height:55vh;overflow-y:auto;padding-right:2px">
+      ${TRACKS.map(tr => {
+        const isOwn = unlocked.includes(tr.id);
+        const isCur = curTrack === tr.id;
+        return `<div class="shop" style="flex-direction:column;align-items:stretch;gap:6px;${isCur?'outline:3px solid #40c057;background:#ebfbee':''}">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-weight:700">${tr.icon} ${LANG==='hi'?tr.name_hi:tr.name_en}</span>
+            <small style="font-weight:800;color:${tr.cost===0?'#2b8a3e':'#e8590c'}">${tr.cost===0?(LANG==='hi'?'मुफ़्त':'Free'):'🪙 '+tr.cost}</small>
+          </div>
+          <div style="font-size:13px;color:var(--mut);text-align:left">${LANG==='hi'?tr.desc_hi:tr.desc_en}</div>
+          <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:4px">
+            ${isCur ? `<b style="color:#2b8a3e;font-size:15px">▶ ${LANG==='hi'?'बज रहा है':'Now Playing'}</b>` : 
+              isOwn ? `<button class="pri" style="padding:6px 14px;font-size:14px;width:auto;background:#4dabf7" data-sel="${tr.id}">▶ ${LANG==='hi'?'चलाओ':'Play'}</button>` :
+              `<button class="pri" style="padding:6px 14px;font-size:14px;width:auto" data-buy="${tr.id}">🪙 ${tr.cost} ${LANG==='hi'?'खरीदें':'Unlock'}</button>`
+            }
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+    <div class="row" style="margin-top:12px"><button id="x">${t('close')}</button></div>`
+  );
+  $('#x').onclick = home;
+  document.querySelectorAll('[data-buy]').forEach(b => {
+    b.onclick = async () => {
+      const tid = +b.dataset.buy;
+      const tr = TRACKS.find(x => x.id === tid);
+      if(!tr) return;
+      if(S.coins < tr.cost){
+        b.textContent = t('need');
+        setTimeout(() => musicShop(), 1200);
+        return;
+      }
+      const j = await api('buytrack', { tid });
+      if(j){
+        sfx(784, 0.25);
+        music();
+        musicShop();
+      }
+    };
+  });
+  document.querySelectorAll('[data-sel]').forEach(b => {
+    b.onclick = async () => {
+      const tid = +b.dataset.sel;
+      const j = await api('settrack', { tid });
+      if(j){
+        sfx(660, 0.15);
+        music();
+        musicShop();
+      }
+    };
+  });
+}
+
+/* home */
+
+function home(){
+ if(!S){login();return}
+ LOGIN_ANIM_PLAYED = true;
+ closeM();G=null;
+ ensurePersistentDock();
+ const today=new Date().toDateString();
+ $('#app').innerHTML=`<div class="top"><span class="chip">${safeAv(S.av)} ${esc(S.name==='guest'?t('hi'):S.name)}</span><span class="chip">🪙 ${S.coins} · ⭐ ${S.stars}</span></div>
+ <div style="text-align:center;margin:6px 0 10px"><h1 style="font-size:26px;margin:0;color:#F4D6B0;font-weight:900;letter-spacing:1px;text-shadow:0 0 16px rgba(217,119,6,0.35)">☕ Tapri Game <span style="font-size:18px;color:#5BC0DE;font-weight:800">(टपरी गेम)</span></h1></div>
+ <div class="scene2">${scene()}</div>${stageInfo()}
+ ${fest()?`<div class="fest">${fest()[0]} ${LANG==='hi'?fest()[1]:fest()[2]} · ${t('fest')}</div>`:''}<div class="map">${mapHtml()}</div>
+ 
+ <div class="bento-grid">
+   <button class="bento-card bento-hero" id="pl">
+     <div style="font-size:24px;font-weight:800">▶ ${t('play')} · ${t('lvl')} ${S.level}</div>
+     <div style="font-size:14px;opacity:.95">${LANG==='hi'?'चाय व नाश्ता पज़ल खेलें':'Tap to Play Chai Puzzle'}</div>
+   </button>
+   
+   <button class="bento-card" id="sh" style="background:linear-gradient(135deg,#fff4e6,#ffe8cc);border-color:#ff922b">
+     <div style="font-size:24px">🛒</div>
+     <div style="font-weight:800;font-size:14px">${t('shop')}</div>
+     <small style="color:#1a1a1a;font-weight:700">${S.up.length}/${UP.length} ${LANG==='hi'?'अपग्रेड्स':'Upgrades'}</small>
+   </button>
+
+   <button class="bento-card" id="dl" style="background:linear-gradient(135deg,#fff0f6,#ffdeeb);border-color:#ff8787">
+     <div style="font-size:24px">🎁</div>
+     <div style="font-weight:800;font-size:14px;color:#c92a2a">${t('daily')}</div>
+     <small style="color:#a61e4d;font-weight:800">${S.streak} ${t('streak')}${S.last===S.day?'':' 🔴'}</small>
+   </button>
+
+   <button class="bento-card" id="jkb" style="background:linear-gradient(135deg,#d0ebff,#a5d8ff);border-color:#74c0fc">
+     <div style="font-size:24px">📻</div>
+     <div style="font-weight:800;font-size:14px">${LANG==='hi'?'म्यूजिक रेडियो':'Radio'}</div>
+     <small style="color:#1864ab;font-weight:700">${(S.tracks||[0]).length}/5 ${LANG==='hi'?'गाने':'Tracks'}</small>
+   </button>
+
+   <button class="bento-card" id="lb" style="background:linear-gradient(135deg,#4263eb 0%,#7048e8 100%);border-color:#748ffc;color:#fff;box-shadow:0 10px 24px rgba(66,99,235,.35),inset 0 2px 4px rgba(255,255,255,.6),inset 0 -4px 6px rgba(0,0,0,.2);transform:perspective(500px) rotateX(2deg)">
+     <div style="font-size:26px;filter:drop-shadow(0 4px 6px rgba(0,0,0,.25))">🌍</div>
+     <div style="font-weight:800;font-size:15px;color:#ffffff">${LANG==='hi'?'लाइव रैंक':'Live Rank'}</div>
+     <small style="color:#dbe4ff;font-weight:800">${LANG==='hi'?'लाइव रैंकिंग':'Live Ranks'}</small>
+   </button>
+
+   <button class="bento-card" id="ch" style="background:linear-gradient(135deg,#d3f9d8,#b2f2bb);border-color:#69db7c">
+     <div style="font-size:24px">👥</div>
+     <div style="font-weight:800;font-size:14px">${t('chr')}</div>
+     <small style="color:#000000;font-weight:800">${LANG==='hi'?'कैरेक्टर बाज़ार':'Custom Shop'}</small>
+   </button>
+
+   <button class="bento-card" id="ad" style="background:linear-gradient(135deg,#f8f9fa,#e9ecef);border-color:#ced4da">
+     <div style="font-size:24px">📺</div>
+     <div style="font-weight:800;font-size:14px;color:#212529">${t('adc')}</div>
+     <small style="color:#0ca678;font-weight:800;font-size:13px">+25 🪙</small>
+   </button>
+
+   <button class="bento-card" id="st" style="background:linear-gradient(135deg,#f1f3f5,#e9ecef);border-color:#ced4da;grid-column:span 2;padding:12px">
+     <div style="display:flex;align-items:center;justify-content:center;gap:8px">
+       <span style="font-size:20px">⚙️</span>
+       <span style="font-weight:800;font-size:15px">${t('set')}</span>
+     </div>
+   </button>
+ </div>
+
+
+`;
+ $('#pl').onclick=()=>play(S.level);
+ if($('#jkb')) $('#jkb').onclick=musicShop;
+
+ if($('#nav_home')) $('#nav_home').onclick = () => { sfx(660, 0.08); closeM(); window.scrollTo({top: 0, behavior: 'smooth'}); };
+ if($('#nav_shop')) $('#nav_shop').onclick = () => { sfx(660, 0.08); shop(); };
+ if($('#nav_chars')) $('#nav_chars').onclick = () => { sfx(660, 0.08); collect(); };
+ if($('#nav_rank')) $('#nav_rank').onclick = () => { sfx(660, 0.08); lead(); };
+ if($('#nav_set')) $('#nav_set').onclick = () => { sfx(660, 0.08); settings(); };
+
+ $('#ch').onclick=collect;$('#lb').onclick=lead;$('#ad').onclick=()=>adCoins(home);$('#sh').onclick=shop;$('#dl').onclick=daily;$('#st').onclick=settings;
+ document.querySelectorAll('.nd:not(.lk)').forEach(b => {
+   b.onclick = () => {
+     const l = +b.dataset.l;
+     if(l) play(l);
+   };
+ });
+ if($('#mp_p')) $('#mp_p').onclick = () => { if(MAP_PAGE > 0){ MAP_PAGE--; home(); } };
+  if($('#mp_n')) $('#mp_n').onclick = () => { if(MAP_PAGE < Math.floor((S.level - 1) / 10)){ MAP_PAGE++; home(); } };
+  if($('#mp_cur')) $('#mp_cur').onclick = () => { MAP_PAGE = Math.floor((S.level - 1) / 10); home(); };
+ if($('#mp_n')) $('#mp_n').onclick = () => { if(MAP_PAGE < Math.floor((S.level - 1) / 10)){ MAP_PAGE++; home(); } };
+}
+function daily(){
+const can=S.last!==S.day,yd=new Date(new Date(S.day).getTime()-864e5).toISOString().slice(0,10),m=S.ms&&S.ms.d===S.day?S.ms:{w:0,s:0,t:0,c:[]},nx=can?(S.last===yd?S.streak+1:1):S.streak,r=20+Math.min(nx,7)*5;
+const MS=[[t('m1'),m.w,3,40],[t('m2'),m.s,10,30],[t('m3'),m.t,4,30]];
+modal(`<h2>🎁 ${t('daily')}</h2>${can?`<p style="font-size:20px">🔥 ${nx} ${t('streak')} · 🪙 +${r}</p><button class="pri" id="x">${t('claim')}</button>`:`<p>${t('done')}</p>`}<h2 style="margin-top:14px">${t('miss')}</h2>`+MS.map((q,i)=>`<div class="mi"><span>${q[0]} ${Math.min(q[1],q[2])}/${q[2]}</span>${m.c.includes(i)?'✔':q[1]>=q[2]?`<button data-q="${i}">🪙${q[3]}</button>`:'🪙'+q[3]}</div>`).join('')+`<button id="y">${t('close')}</button>`);
+$('#y').onclick=home;
+if(can)$('#x').onclick=async()=>{if(await api('daily')){sfx(880,.2);daily()}};
+document.querySelectorAll('[data-q]').forEach(b=>b.onclick=async()=>{if(await api('mission',{i:+b.dataset.q})){sfx(880,.2);daily()}});
+}
+async function adCoins(back){
+const j=await api('adstart');if(!j)return;
+if(j.lim){modal(`<h2>📺</h2><p>${t('adlim')}</p><button id="x">${t('close')}</button>`);$('#x').onclick=back;return}
+let c=3;modal(`<h2>📺</h2><p>${t('ad')}</p><p style="font-size:30px;font-weight:800" id="cn">${c}</p><button class="pri" id="x" disabled>${t('adwait')}</button>`);
+const iv=setInterval(()=>{const n=$('#cn');if(!n){clearInterval(iv);return}c--;n.textContent=c>0?c:'✔';if(c<=0){clearInterval(iv);const b=$('#x');b.disabled=false;b.textContent=t('adget')+' 🪙 +25'}},1000);
+$('#x').onclick=async()=>{if(c>0)return;await api('adclaim');sfx(880,.25);back()}}
+function shop(){
+  setActiveNavTab('shop');
+const nxt=UP.findIndex(u=>S.level<u[2]),ap=S.ad&&S.ad.d===S.day?S.ad.n:0;
+modal(`<h2>🛒 ${t('shop')}</h2><p>🪙 ${S.coins}</p><button class="pri" id="ad2" style="font-size:17px">📺 ${t('adc')} (${ap}/5)</button><h2 style="margin-top:12px;font-size:20px">${t('upg')}</h2>`
++UP.map((u,i)=>S.level>=u[2]?`<div class="shop"><span>${u[0]} 🪙${u[1]}</span>${S.up.includes(i)?`<b>✔ ${t('own')}</b>`:`<button data-b="${i}">${t('buy')}</button>`}</div>`:'').join('')
++(nxt>=0?`<div class="shop" style="opacity:.6"><span>${UP[nxt][0]} 🔒</span><small>${t('lvl')} ${UP[nxt][2]}</small></div>`:'')
++`<button id="x">${t('close')}</button>`);
+$('#x').onclick=home;$('#ad2').onclick=()=>adCoins(shop);
+document.querySelectorAll('[data-b]').forEach(b=>b.onclick=async()=>{const i=+b.dataset.b;if(S.coins<UP[i][1]){b.textContent=t('need');return}if(await api('buy',{i})){sfx(784,.25);shop()}});
+}
+
+function settings(){
+  setActiveNavTab('set');
+  const cheatActive = S && S.cheat === 1;
+  const cheatSection = cheatActive ? `
+    <div style="background:#ebfbee;border:2px solid #40c057;border-radius:16px;padding:12px;margin:12px 0;text-align:left">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+        <div>
+          <div style="font-weight:800;font-size:15px;color:#2b8a3e">⚡ ${LANG==='hi'?'चीट मोड: सक्रिय (Active)':'Cheat Mode: Active'}</div>
+          <div style="font-size:12px;color:#495057;margin-top:2px">${LANG==='hi'?'अनलिमिटेड हिंट्स और ⚡ पास बटन चालू है':'Unlimited hints & Skip button are ON'}</div>
+        </div>
+        <button id="rm_cheat" style="background:#e03131;color:#fff;padding:8px 14px;font-size:14px;border-radius:12px;box-shadow:none;width:auto">❌ ${LANG==='hi'?'चीट हटाएँ (Turn Off)':'Turn Off Cheat'}</button>
+      </div>
+    </div>
+  ` : `
+    <div style="background:rgba(28,37,65,0.9);border:1.5px solid #3A506B;border-radius:18px;padding:12px 14px;margin:12px 0;text-align:left;box-shadow:0 6px 16px rgba(11,19,43,0.6)">
+      <div style="font-weight:800;font-size:15px;color:#5BC0DE;margin-bottom:6px">🔑 ${LANG==='hi'?'सीक्रेट कोड दर्ज करें':'Secret Code'}</div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <input id="cd" type="text" autocomplete="off" placeholder="${LANG==='hi'?'यहाँ कोड लिखें (उदा: shamsraj@123)':'Enter code (e.g. shamsraj@123)'}" style="flex:1;padding:10px 12px;font-size:15px;border-radius:12px;border:1.5px solid #3A506B;background:#0B132B;color:#F4D6B0;font-weight:700">
+        <button id="cb" class="pri" style="padding:10px 16px;font-size:14px;border-radius:12px;white-space:nowrap;width:auto">⚡ ${LANG==='hi'?'लागू करें':'Apply'}</button>
+      </div>
+      <div style="font-size:12px;color:#8da4c4;font-weight:600;margin-top:6px">${LANG==='hi'?'डेवलपर फीचर्स व +1000 सिक्कों के लिए सीक्रेट कोड (shamsraj@123) दर्ज करें।':'Enter developer secret code (shamsraj@123) for unlimited features & +1000 coins.'}</div>
+    </div>
+  `;
+
+  modal(`<h2>⚙️ ${t('set')}</h2>
+    <div class="row"><button id="a">🎵 ${t('mus')}: ${S.music?t('on'):t('off')}</button></div>
+    <div class="row"><button id="msb" style="background:#4dabf7;color:#fff">📻 ${LANG==='hi'?'म्यूजिक कैसेट रेडियो':'Music Cassette Radio'}</button></div>
+    <div class="row"><button id="b">🔊 ${t('snd')}: ${S.sfx?t('on'):t('off')}</button></div>
+    <div class="row"><button id="cpn" style="background:#4dabf7;color:#fff">🔐 ${LANG==='hi'?'PIN / पासवर्ड बदलें':'Change PIN / Password'}</button></div>
+    <div class="row"><button id="c">${t('lang')}</button></div>
+    <div class="row"><button id="e">❓ ${t('howto')}</button></div>
+    <div class="row"><button id="d">${t('out')}</button></div>
+    ${cheatSection}
+    <button id="x">${t('close')}</button>`
+  );
+
+  $('#a').onclick = async () => { if(await api('prefs',{music:!S.music})){ music(); settings(); } };
+  if($('#msb')) $('#msb').onclick = () => { closeM(); musicShop(); };
+  if($('#cpn')) $('#cpn').onclick = changePinModal;
+  $('#b').onclick = async () => { if(await api('prefs',{sfx:!S.sfx})) settings(); };
+  $('#c').onclick = () => { LANG=LANG==='en'?'hi':'en'; try{localStorage.setItem('tapri_lang',LANG)}catch(e){} if(document.getElementById('capsule_dock')) document.getElementById('capsule_dock').remove(); ensurePersistentDock(); home(); settings(); };
+  $('#e').onclick = tut;
+  $('#d').onclick = () => logout();
+  $('#x').onclick = closeM;
+
+  if($('#cb')){
+    const doCheat = async () => {
+      const code = ($('#cd').value || '').trim();
+      if(!code) return;
+      const j = await api('cheat', { code });
+      if(j && j.ok){
+        sfx(988, 0.3);
+        toast(LANG==='hi'?'⚡ चीट मोड चालू! +1000 सिक्के व अनलिमिटेड हिंट्स मिले!':'⚡ Cheat Mode ON! +1000 Coins & Unlimited Hints!');
+        settings();
+      } else {
+        toast(LANG==='hi'?'गलत कोड! कृपया सही कोड दर्ज करें।':'Wrong Code! Please enter the correct code.');
+      }
+    };
+    $('#cb').onclick = doCheat;
+    if($('#cd')) $('#cd').onkeydown = e => { if(e.key === 'Enter') doCheat(); };
+  }
+
+  if($('#rm_cheat')){
+    $('#rm_cheat').onclick = async () => {
+      const j = await api('cheat', { disable: true });
+      if(j){
+        sfx(300, 0.2);
+        toast(LANG==='hi'?'❌ चीट मोड हटा दिया गया (नॉर्मल मोड सक्रिय)':'❌ Cheat Mode Turned Off (Normal Mode)');
+        settings();
+      }
+    };
+  }
+}
+/* game */
+function rng(s){return()=>(s=(s*1664525+1013904223)%4294967296)/4294967296}
+function newGame(lvl){
+ const n = (typeof lvl === 'number' && lvl >= 1) ? lvl : (PLAYING_LVL || S.level);
+ PLAYING_LVL = n;
+ const c = Math.min(3 + ((n - 1) >> 1), 8);
+ let tb;
+ let lock = n % 3 === 0 ? c + 1 : -1;
+ let solved = false;
+ for (let k = 0; k < 50; k++) {
+  const curLock = k > 25 ? -1 : lock;
+  const r = rng(n * 7919 + k * 104729), p = [];
+  for (let i = 0; i < c; i++) for (let j = 0; j < 4; j++) p.push(i);
+  for (let i = p.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [p[i], p[j]] = [p[j], p[i]]; }
+  tb = []; for (let i = 0; i < c; i++) tb.push(p.slice(i * 4, i * 4 + 4)); tb.push([], []);
+  if (solveMove(tb, 0, curLock)) {
+   lock = curLock;
+   solved = true;
+   break;
+  }
+ }
+ if (!solved) {
+  lock = -1;
+  tb = [];
+  for (let i = 0; i < c; i++) tb.push([i, i, i, i]);
+  tb.push([], []);
+  const r = rng(n * 7919);
+  for (let step = 0; step < 18; step++) {
+   const src = Math.floor(r() * tb.length);
+   const dst = Math.floor(r() * tb.length);
+   if (src !== dst && tb[src].length > 0 && tb[dst].length < 4) {
+    tb[dst].push(tb[src].pop());
+   }
+  }
+ }
+ const moveLimit = n % 4 === 0 ? Math.round(c * 6.5 + 8) : 0;
+ G = {
+  tb, c, mv: 0, sel: -1, hist: [], extra: false, done: false, isWinning: false,
+  hints: S.cheat ? 999 : 3, hint: null, t0: Date.now(), srv: {}, tips: 0, log: [],
+  lim0: moveLimit, lim: moveLimit, lock, lvl: n
+ };
+ api('start', { lvl: n });
+}
+const won=()=>G.tb.every(x=>!x.length||(x.length===4&&x.every(v=>v===x[0])));
+function tap(j){
+ if(G.done||(j===G.lock&&G.mv<6))return;G.hint=null;sfx(520,.06);
+ if(G.sel<0){if(G.tb[j].length)G.sel=j}
+ else if(G.sel===j)G.sel=-1;
+ else{
+  const a=G.tb[G.sel],b=G.tb[j],x=a[a.length-1];
+  if(b.length<4&&(!b.length||b[b.length-1]===x)){
+   G.hist.push({tb:JSON.stringify(G.tb),extra:G.extra,n:G.log.length});G.log.push(['m',Date.now()-G.t0,G.sel,j]);
+   const r0=trayRect(G.sel),n0=a.length,m0=b.length;while(a.length&&a[a.length-1]===x&&b.length<4)b.push(a.pop());FL={r0,n0,j,k:b.length-m0,m0,x};
+   G.mv++;G.sel=-1;sfx(660,.1);serve();
+   if(won()){drawGame();return win()}if(G.lim&&G.mv>=G.lim){drawGame();return lose()}
+  }else G.sel=b.length?j:-1;
+ }
+ drawGame();
+}
+function drawGame(){drawGame0();if(FL){const f=FL;FL=null;fly(f)}}
+function drawGame0(){
+ $('#app').innerHTML=`<div class="gm"><div class="top"><button id="hm" style="background:#ffffff;color:#000000;font-weight:800;border:2px solid #000000">← ${t('home')}</button><span class="chip">${t('lvl')} ${G.lvl||S.level}${G.lvl<S.level?' <span style="font-size:11px;background:#2b8a3e;color:#ffffff;padding:2px 7px;border-radius:8px;font-weight:800">⟳ '+(LANG==='hi'?'दोबारा':'Replay')+'</span>':''} · ${t('mv')} ${G.mv}${G.lim?'/'+G.lim:''}</span><span class="chip">🪙 ${S.coins}</span></div>
+ <div class="msg">${G.lock>=0&&G.mv<6?t('lock'):''}</div><div class="chars">${charsHtml()}</div>
+ <div class="board">${G.tb.map((x,i)=>`<div class="tb ${G.sel===i?'sel':''} ${G.hint&&G.hint.includes(i)?'hint':''} ${i===G.lock&&G.mv<6?'lock':''}" data-i="${i}">${i===G.lock&&G.mv<6?'<div class="it">🔒</div>':''}${x.map(v=>`<div class="it">${ITEMS[v]}</div>`).join('')}</div>`).join('')}</div>
+ <div class="row">${S.cheat?'<button id="ck" style="background:#ffffff;color:#000000;font-weight:800;border:2px solid #000000">⚡ पास</button>':''}<button id="hn" style="background:#ffffff;color:#000000;font-weight:800;border:2px solid #000000">💡 ${t('hint')} ${S.cheat?'∞':G.hints}</button><button id="un" style="background:#ffffff;color:#000000;font-weight:800;border:2px solid #000000">↩ ${t('undo')}</button><button id="tr" style="background:#ffffff;color:#000000;font-weight:800;border:2px solid #000000" ${G.extra?'disabled style="opacity:.5"':''}>+ ${t('tray')}</button><button id="rs" style="background:#ffffff;color:#000000;font-weight:800;border:2px solid #000000">⟳ ${t('re')}</button></div></div>`;
+ $('#hm').onclick=home;$('#hn').onclick=hint;if($('#ck'))$('#ck').onclick=skip;
+ document.querySelectorAll('.tb').forEach(e=>e.onclick=()=>tap(+e.dataset.i));
+ $('#un').onclick=()=>{if(G.hist.length&&!G.done){const h=G.hist.pop();G.tb=JSON.parse(h.tb);G.extra=h.extra;G.log.length=h.n;G.mv=G.log.filter(e=>e[0]==='m').length;G.lim=G.lim0?G.lim0+5*G.log.filter(e=>e[0]==='x').length:0;G.sel=-1;sfx(300,.1);drawGame()}};
+ $('#rs').onclick=()=>{newGame(G.lvl||S.level);drawGame()};
+ $('#tr').onclick=()=>{if(G.extra)return;modal(`<h2>📺</h2><p>${t('ad')}</p><button class="pri" id="x">${t('watch')}</button>`);$('#x').onclick=()=>{closeM();G.hist.push({tb:JSON.stringify(G.tb),extra:G.extra,n:G.log.length});G.tb.push([]);G.extra=true;G.log.push(['t',Date.now()-G.t0]);drawGame()}};
+}
+function confetti(){for(let i=0;i<20;i++){const s=document.createElement('span');s.className='cf';s.textContent=['🎉','⭐','🪙','☕'][i%4];s.style.left=Math.random()*95+'vw';s.style.animationDelay=Math.random()*.5+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),1600)}}
+function showWin(r, old){
+  const q = (r && r.res) ? r.res : {};
+  const playedLvl = (q && q.lvl) || (G && G.lvl) || old;
+  // Strictly check if the played level was smaller than current level before winning
+  const isReplay = Boolean(playedLvl < old);
+  const improved = Boolean(q.improved);
+  const grew = !isReplay && stage(S.level) > stage(old);
+  [523, 659, 784, 1047].forEach((f, i) => setTimeout(() => sfx(f, .25), i * 130));
+  confetti();
+  const replayMsg = isReplay ? `<p style="font-size:15px;color:#2b8a3e;font-weight:700;margin:2px 0">⟳ ${LANG==='hi'?'लेवल '+playedLvl+' दोबारा जीता!':'Level '+playedLvl+' Replayed!'}</p>` : '';
+  const improveMsg = improved ? `<p style="font-size:16px;color:#1864ab;font-weight:800;margin:2px 0">🌟 ${LANG==='hi'?'नया 3-स्टार रिकॉर्ड बना!':'New 3-Star Record!'}</p>` : '';
+  modal(`<h2>🎉 ${t('win')}</h2>${replayMsg}${improveMsg}<p style="font-size:42px;margin:4px">${'⭐'.repeat(q.st || 3)}${'☆'.repeat(3 - (q.st || 3))}</p><p style="font-size:20px">🪙 +${q.co || 25} · ${t('mv')}: ${q.mv || (G?G.mv:0)}<br>${t('tip')}: 🪙 +${(q.tips || (G?G.tips:0)) * 3}</p>${grew?`<p style="font-size:18px;font-weight:800">${t('grew')}</p>`:''}<div class="row"><button id="h">${t('home')}</button><button class="pri" id="n" style="width:auto;flex:2;font-size:17px">${isReplay ? (LANG==='hi'?'मैप पर जाएँ 🗺️':'Level Map 🗺️') : t('next')+' ▶'}</button></div>`);
+  $('#h').onclick = () => { closeM(); home(); };
+  $('#n').onclick = () => {
+    closeM();
+    if (isReplay) {
+      home();
+    } else {
+      play(S.level);
+    }
+  };
+}
+async function win(){
+  if (G.isWinning) return;
+  G.isWinning = true;
+  G.done = true;
+  const old = S.level;
+  const playedLvl = G.lvl || S.level;
+  const isReplay = Boolean(playedLvl < old);
+
+  // Single API call; if offline or fails, falls back internally to localApi ONCE
+  let r = await api('win', { log: G.log, lvl: playedLvl, name: S.name, stars: S.stars, level: old, av: S.av });
+  if (!r || !r.res) {
+    r = localApi('win', { lvl: playedLvl });
+  }
+
+  // Guarantee progression on active level win
+  if (!isReplay) {
+    if (S.level <= old) S.level = old + 1;
+    if (r && r.res) r.res.replayed = false;
+  } else {
+    if (r && r.res) r.res.replayed = true;
+  }
+
+  MAP_PAGE = Math.floor((S.level - 1) / 10);
+  showWin(r, old);
+}
+const pat=i=>30+i*14;
+function serve(){for(let i=0;i<G.c;i++)if(G.srv[i]==null&&G.tb.some(x=>x.length===4&&x.every(y=>y===i))){const e=(Date.now()-G.t0)/1000;G.srv[i]=e;if(e<=pat(i)){G.tips++;sfx(988,.15)}}}
+function charsHtml(){const e=(Date.now()-G.t0)/1000;return Array.from({length:G.c},(_,i)=>{const s=G.srv[i],ok=s!=null,late=!ok&&e>pat(i),w=ok?100:Math.max(0,100-e/pat(i)*100);return `<div class="ch ${ok?'ok':''}"><div class="bb">${ok?'✔':ITEMS[i]}</div><div class="fc">${ok?(s<=pat(i)?'😋':'🙂'):late?'😠':CUST[(S.level+i)%CUST.length]}</div><div class="pbar"><i style="width:${w}%;${late?'background:#f03e3e':''}"></i></div></div>`}).join('')}
+setInterval(()=>{const c=$('.chars');if(G&&!G.done&&c)c.innerHTML=charsHtml()},500);
+function solveMove(tb0,mv0,lock){
+ const lk=(j,m)=>j===lock&&m<6,key=(t,m)=>(lock>=0?Math.min(m,6)+'|':'')+t.map((x,i)=>(i===lock?'L':'')+x.join('')).sort().join(',');
+ const hf=t=>{let h=0;const cnt={};t.forEach(x=>{for(let i=1;i<x.length;i++)if(x[i]!==x[i-1])h+=2;new Set(x).forEach(v=>cnt[v]=(cnt[v]||0)+1)});for(const v in cnt)h+=cnt[v]-1;return h};
+ const done=t=>t.every(x=>!x.length||(x.length===4&&x.every(v=>v===x[0])));
+ const H=[];const push=n=>{H.push(n);let i=H.length-1;while(i>0){const p=(i-1)>>1;if(H[p].p<=H[i].p)break;[H[p],H[i]]=[H[i],H[p]];i=p}};
+ const pop=()=>{const r=H[0],l=H.pop();if(H.length){H[0]=l;let i=0;for(;;){let a=2*i+1,b=a+1,m=i;if(a<H.length&&H[a].p<H[m].p)m=a;if(b<H.length&&H[b].p<H[m].p)m=b;if(m===i)break;[H[m],H[i]]=[H[i],H[m]];i=m}}return r};
+ const seen=new Set([key(tb0,mv0)]);push({t:tb0,m:mv0,d:0,f:null,p:0});
+ for(let it=0;H.length&&it<40000;it++){const n=pop();if(done(n.t))return n.f;
+  const t=n.t;for(let i=0;i<t.length;i++){const a=t[i];if(!a.length||lk(i,n.m)||(a.length===4&&a.every(v=>v===a[0])))continue;const x=a[a.length-1];
+   for(let j=0;j<t.length;j++){const b=t[j];if(j===i||lk(j,n.m)||b.length>3||(b.length?b[b.length-1]!==x:new Set(a).size<2))continue;
+    const u=t.map(r=>r.slice()),s=u[i],d=u[j];while(s.length&&s[s.length-1]===x&&d.length<4)d.push(s.pop());
+    const k=key(u,n.m+1);if(seen.has(k))continue;seen.add(k);push({t:u,m:n.m+1,d:n.d+1,f:n.f||[i,j],p:hf(u)*3+n.d+1})}}}
+ return null}
+function hint(){if(G.done||G.hints<1)return;const m=solveMove(G.tb,G.mv,G.lock);if(!m)return;if(!S.cheat)G.hints--;G.hint=m;G.sel=-1;drawGame()}
+async function skip(){
+ if(G.done)return;G.done=true;const old=S.level;const playedLvl=G.lvl||S.level;
+ const localRes=localApi('skip',{lvl:playedLvl});
+ if(playedLvl>=old&&S.level<=old){S.level=old+1}
+ MAP_PAGE=Math.floor((S.level-1)/10);
+ let r=await api('skip',{lvl:playedLvl,name:S.name,stars:S.stars,level:S.level});
+ if(!r||!r.res)r=localRes;
+ showWin(r,old);
+}
+async function cheat(){const j=await api('cheat',{code:$('#cd').value});if(j&&j.ok)sfx(988,.3);$('#cb').textContent=j&&j.ok?'✅':'❌'}
+function lose(){
+ G.done=true;sfx(200,.35);
+ modal(`<h2>😵 ${t('lose')}</h2><p style="font-size:15px;margin:4px 0">${LANG==='hi'?'चालें पूरी हो गईं! +5 चालें लेकर खेल जारी रखें या फिर से शुरू करें।':'Out of moves! Add +5 moves or restart.'}</p><div class="row"><button id="r">⟳ ${t('re')}</button><button class="pri" id="m5" style="width:auto;flex:2;font-size:17px">${t('more')}</button></div>`);
+ $('#r').onclick=()=>{closeM();newGame(G.lvl||S.level);drawGame()};
+ $('#m5').onclick=()=>{closeM();G.lim+=5;G.done=false;G.log.push(['x',Date.now()-G.t0]);drawGame()};
+}
+function tut(){modal(`<h2>❓ ${t('tut')}</h2><p style="text-align:left">${t('t1')}<br><br>${t('t2')}<br><br>${t('t3')}</p><button class="pri" id="x">${t('ok')}</button>`);$('#x').onclick=closeM}
+function collect(){
+  if(!S){ login(); return; }
+  setActiveNavTab('chars');
+  const owned = S.boughtChars || [0];
+  const curAv = safeAv(S.av);
+
+  const charCards = CHAR_ROSTER.map(ch => {
+    const isOwned = owned.includes(ch.id) || ch.cost === 0;
+    const isEquipped = curAv === ch.icon;
+
+    let actionBtn = '';
+    if(isEquipped){
+      actionBtn = `<button disabled style="background:#2b8a3e;color:#fff;border:2px solid #000000;font-size:13px;padding:6px 12px;border-radius:12px">✔ ${LANG==='hi'?'सक्रिय':'Active'}</button>`;
+    } else if(isOwned){
+      actionBtn = `<button data-equip="${ch.id}" style="background:#ffffff;color:#000000;border:2px solid #000000;font-size:13px;padding:6px 14px;border-radius:12px;box-shadow:0 3px 6px rgba(0,0,0,0.1)">🎽 ${LANG==='hi'?'चुनें':'Select'}</button>`;
+    } else {
+      actionBtn = `<button data-buy-char="${ch.id}" style="background:#ff4d6d;color:#ffffff;border:2px solid #000000;font-size:13px;padding:6px 12px;border-radius:12px;box-shadow:0 4px 10px rgba(255,77,109,0.3)">🪙 ${ch.cost} ${LANG==='hi'?'खरीदें':'Buy'}</button>`;
+    }
+
+    return `
+      <div style="display:flex;justify-content:space-between;align-items:center;background:#ffffff;border:2px solid ${isEquipped?'#2b8a3e':'#e9ecef'};border-radius:18px;padding:10px 14px;margin:8px 0;box-shadow:0 4px 12px rgba(0,0,0,0.06)">
+        <div style="display:flex;align-items:center;gap:12px;text-align:left">
+          <div style="font-size:36px;filter:drop-shadow(0 3px 5px rgba(0,0,0,0.15))">${ch.icon}</div>
+          <div>
+            <div style="font-weight:800;font-size:15px;color:#000000">${LANG==='hi'?ch.name_hi:ch.name_en}</div>
+            <div style="font-size:11px;color:#495057;font-weight:600">${LANG==='hi'?ch.desc_hi:ch.desc_en}</div>
+          </div>
+        </div>
+        <div>${actionBtn}</div>
+      </div>
+    `;
+  }).join('');
+
+  modal(`<h2>👥 ${LANG==='hi'?'कस्टम कैरेक्टर बाज़ार':'Custom Character Shop'}</h2>
+    <div style="background:rgba(28,37,65,0.85);border:1.5px solid #3A506B;border-radius:16px;padding:10px 14px;margin:6px 0 10px;display:flex;justify-content:space-between;align-items:center;text-align:left">
+      <div>
+        <div style="font-size:11px;font-weight:800;color:#5BC0DE">${LANG==='hi'?'सिक्के (Coins)':'Your Coins'}</div>
+        <div style="font-size:18px;font-weight:800;color:#F4D6B0">🪙 ${S.coins}</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:11px;font-weight:800;color:#5BC0DE">${LANG==='hi'?'सक्रिय अवतार':'Active Avatar'}</div>
+        <div style="font-size:24px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.15))">${curAv}</div>
+      </div>
+    </div>
+
+    <div style="max-height:50vh;overflow-y:auto;padding-right:2px">
+      ${charCards}
+    </div>
+
+    <div class="row" style="margin-top:14px">
+      <button id="close_char">${t('close')}</button>
+    </div>`
+  );
+
+  $('#close_char').onclick = () => { closeM(); home(); };
+
+  document.querySelectorAll('[data-buy-char]').forEach(b => {
+    b.onclick = async () => {
+      const cid = +b.dataset.buyChar;
+      const item = CHAR_ROSTER.find(x => x.id === cid);
+      if(!item) return;
+      if(S.coins < item.cost){
+        toast(t('need'));
+        return;
+      }
+      const j = await api('buy_char', { cid });
+      if(j && j.ok){
+        sfx(880, 0.25);
+        toast(LANG==='hi'?'🎉 नया कैरेक्टर खरीदा गया और सक्रिय हुआ!':'🎉 Character unlocked and equipped!');
+        collect();
+      }
+    };
+  });
+
+  document.querySelectorAll('[data-equip]').forEach(b => {
+    b.onclick = async () => {
+      const cid = +b.dataset.equip;
+      const j = await api('equip_char', { cid });
+      if(j && j.ok){
+        sfx(660, 0.15);
+        toast(LANG==='hi'?'🎽 नया कैरेक्टर सक्रिय हुआ!':'🎽 Character equipped!');
+        collect();
+      }
+    };
+  });
+}
+async function lead(){
+ setActiveNavTab('rank');
+ const j = await api('lead', { name: S ? S.name : '' });
+ if(!j) return;
+ const list = j.l || [];
+ const myIndex = list.findIndex(p => p.me);
+ const isGuest = !S || S.name === 'guest';
+ const myRank = myIndex >= 0 ? `#${myIndex + 1}` : (isGuest ? (LANG==='hi'?'अतिथि':'Guest') : '-');
+
+ const emptyPodium = (pos, medal) => `
+   <div class="podium-col" style="opacity:0.45">
+     <div class="avatar-badge" style="background:#dee2e6;border:2px dashed #adb5bd;font-size:26px;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center">👤</div>
+     <div class="podium-name" style="color:#868e96">${LANG==='hi'?'खाली स्थान':'Open'}</div>
+     <div class="podium-stars" style="color:#adb5bd">-</div>
+     <div class="podium-block podium-${pos}" style="background:#ced4da;box-shadow:none">${medal} ${pos}</div>
+   </div>
+ `;
+
+ const p1 = list[0];
+ const p2 = list[1];
+ const p3 = list[2];
+
+ const podiumHtml = list.length === 0 ? `
+   <div style="background:#f8f9fa;border:2px dashed #ced4da;border-radius:18px;padding:26px 16px;margin:14px 0;text-align:center">
+     <div style="font-size:42px;margin-bottom:8px">🏆</div>
+     <div style="font-size:17px;font-weight:800;color:#1a1a1a;margin-bottom:6px">
+       ${LANG==='hi' ? 'अभी कोई रियल खिलाड़ी नहीं है!' : 'No Real Players Yet!'}
+     </div>
+     <div style="font-size:13px;color:#495057;line-height:1.4">
+       ${LANG==='hi'
+         ? 'अपना नाम डालकर गेम खेलें और लीडरबोर्ड पर पहले नंबर (Rank #1) पर अपना नाम दर्ज करें!'
+         : 'Enter your name and play to claim the Rank #1 spot on the leaderboard!'}
+     </div>
+   </div>
+ ` : `
+   <div class="arena-3d">
+     <div class="podium-container">
+       <!-- 2nd Place -->
+       ${p2 ? `
+       <div class="podium-col ${p2.me ? 'podium-me' : ''}">
+         <div class="avatar-badge">${safeAv(p2.av)}</div>
+         <div class="podium-name">${esc(p2.n)}${p2.me ? ' <span style="font-size:10px;background:#2b8a3e;color:#fff;padding:1px 5px;border-radius:4px">आप</span>':''}</div>
+         <div class="podium-stars">⭐ ${p2.st} · ${t('lvl')} ${p2.lv}</div>
+         <div class="podium-block podium-2">🥈 2</div>
+       </div>
+       ` : emptyPodium(2, '🥈')}
+
+       <!-- 1st Place (Center & Tallest) -->
+       ${p1 ? `
+       <div class="podium-col ${p1.me ? 'podium-me' : ''}">
+         <div class="avatar-badge"><span class="crown">👑</span>${safeAv(p1.av)}</div>
+         <div class="podium-name">${esc(p1.n)}${p1.me ? ' <span style="font-size:10px;background:#2b8a3e;color:#fff;padding:1px 5px;border-radius:4px">आप</span>':''}</div>
+         <div class="podium-stars" style="color:#1a1a1a">⭐ ${p1.st} · ${t('lvl')} ${p1.lv}</div>
+         <div class="podium-block podium-1">🥇 1</div>
+       </div>
+       ` : emptyPodium(1, '🥇')}
+
+       <!-- 3rd Place -->
+       ${p3 ? `
+       <div class="podium-col ${p3.me ? 'podium-me' : ''}">
+         <div class="avatar-badge">${safeAv(p3.av)}</div>
+         <div class="podium-name">${esc(p3.n)}${p3.me ? ' <span style="font-size:10px;background:#2b8a3e;color:#fff;padding:1px 5px;border-radius:4px">आप</span>':''}</div>
+         <div class="podium-stars">⭐ ${p3.st} · ${t('lvl')} ${p3.lv}</div>
+         <div class="podium-block podium-3">🥉 3</div>
+       </div>
+       ` : emptyPodium(3, '🥉')}
+     </div>
+   </div>
+ `;
+
+ const rows = list.slice(3).map((p, idx) => {
+   const rank = idx + 4;
+   return `
+     <div class="rank-card-3d ${p.me ? 'rank-card-me' : ''}">
+       <span style="display:flex;align-items:center;gap:10px">
+         <b style="min-width:28px;font-size:16px;color:${p.me?'#2b8a3e':'#495057'}">#${rank}</b>
+         <span style="font-size:15px;font-weight:700;color:#1a1a1a">
+           ${safeAv(p.av)} ${esc(p.n)}${p.me ? ' <span style="font-size:11px;background:#2b8a3e;color:#fff;padding:2px 7px;border-radius:6px;font-weight:800">'+(LANG==='hi'?'आप':'You')+'</span>' : ''}
+         </span>
+       </span>
+       <span style="font-weight:800;font-size:14px;color:#1864ab">⭐ ${p.st} · ${t('lvl')} ${p.lv}</span>
+     </div>
+   `;
+ }).join('');
+
+ const rowsContainer = list.length > 3 ? `
+   <div style="max-height:36vh;overflow-y:auto;padding-right:2px;margin-top:6px">
+     ${rows}
+   </div>
+ ` : (list.length > 0 ? `
+   <div style="padding:10px;color:#495057;font-size:13px;text-align:center">
+     ${LANG==='hi' ? 'शीर्ष खिलाड़ियों के अलावा अभी अन्य खिलाड़ी नहीं हैं।' : 'No other players yet.'}
+   </div>
+ ` : '');
+
+ modal(`<h2>🌍 ${LANG==='hi'?'लाइव रियल लीडरबोर्ड':'Live Real Leaderboard'}</h2>
+   <div style="background:linear-gradient(135deg,#364fc7,#4263eb);color:#fff;border-radius:18px;padding:10px 14px;margin:6px 0 10px;display:flex;justify-content:space-between;align-items:center;text-align:left;box-shadow:0 8px 18px rgba(54,79,199,.25)">
+     <div>
+       <span style="font-size:14px;font-weight:800;color:#dbe4ff">🌐 ${LANG==='hi'?'100% असली खिलाड़ी डेटाबेस':'100% Real Players'}</span>
+       <div style="font-size:12px;color:#edf2ff;margin-top:2px">${LANG==='hi'?'कुल असली खिलाड़ी: ':'Total Players: '}<b>${list.length}</b></div>
+     </div>
+     <div style="text-align:right">
+       <span style="font-size:11px;color:#dbe4ff;font-weight:700">${LANG==='hi'?'आपकी रैंक':'Your Rank'}</span>
+       <div style="font-size:18px;font-weight:800;color:#ffffff">${myRank}</div>
+     </div>
+   </div>
+   ${isGuest ? `<div style="background:#fff3bf;color:#d9480f;padding:6px 10px;border-radius:10px;font-size:12px;font-weight:700;margin-bottom:8px;text-align:left">⚠️ ${LANG==='hi'?'आप अतिथि (Guest) मोड में हैं। लीडरबोर्ड पर अपना नाम लाने के लिए प्रोफाइल रजिस्टर करें।':'Playing as Guest. Register to appear on the leaderboard.'}</div>` : ''}
+   
+   ${podiumHtml}
+   ${rowsContainer}
+
+   <div class="row" style="margin-top:14px">
+     <button id="rf" style="background:#4263eb;color:#fff;font-size:15px">🔄 ${LANG==='hi'?'रिफ्रेश':'Refresh'}</button>
+     <button id="x">${t('close')}</button>
+   </div>`
+ );
+ $('#x').onclick = closeM;
+ $('#rf').onclick = () => { closeM(); lead(); };
+}
+let FL=null;
+const STG = [1, 3, 6, 10, 15, 21, 30, 45, 60, 80, 100, 125, 150, 175, 200];
+const NSTG = [
+  ['ठेला', 'Thela Cart'],
+  ['छोटी टपरी', 'Small Tapri'],
+  ['सजी टपरी', 'Decorated Tapri'],
+  ['बड़ी टपरी', 'Big Tapri'],
+  ['चाय कैफ़े', 'Chai Cafe'],
+  ['फ़ूड स्ट्रीट', 'Food Street'],
+  ['मेगा कैफ़े लाउंज', 'Mega Cafe Lounge'],
+  ['रॉयल टी एस्टेट', 'Royal Tea Estate'],
+  ['मेट्रो चाय हब', 'Metro Chai Hub'],
+  ['नेशनल टी नेटवर्क', 'National Tea Network'],
+  ['गोल्डन टी एम्पायर', 'Golden Tea Empire'],
+  ['ग्लोबल फ़्रेंचाइज़ी', 'Global Franchise'],
+  ['चाय सम्राट महातीर्थ', 'Supreme Tea Kingdom'],
+  ['कॉस्मिक टी एम्पायर', 'Cosmic Tea Empire'],
+  ['सर्वोच्च चाय महासम्राट', 'Supreme Grand Monarch']
+];
+const stage = l => { const idx = STG.filter(x => l >= x).length - 1; return Math.max(0, idx); };
+let PLAYING_LVL = 1;
+function play(lvl){
+  const d = document.getElementById('capsule_dock'); if(d) d.style.display='none';
+  PLAYING_LVL = (typeof lvl === 'number' && lvl >= 1 && lvl <= S.level) ? lvl : S.level;
+  newGame(PLAYING_LVL);
+  drawGame();
+  if(!S.tut){api('prefs',{tut:1});tut()}
+}
+function stageInfo(){
+  const s = stage(S.level);
+  let title = '';
+  let nx = null;
+  let p = 100;
+  if (s < STG.length - 1) {
+    title = NSTG[s][LANG === 'hi' ? 0 : 1];
+    nx = STG[s + 1];
+    p = nx ? ((S.level - STG[s]) / (nx - STG[s])) * 100 : 100;
+  } else {
+    const prestigeTier = Math.floor((S.level - 200) / 25) + 1;
+    title = S.level > 200
+      ? (LANG === 'hi' ? `♾️ इनफिनिटी चाय सम्राट ⭐ टियर ${prestigeTier}` : `♾️ Infinity Tea Emperor ⭐ Tier ${prestigeTier}`)
+      : NSTG[s][LANG === 'hi' ? 0 : 1];
+    const curPBase = 200 + (prestigeTier - 1) * 25;
+    nx = curPBase + 25;
+    p = ((S.level - curPBase) / 25) * 100;
+  }
+  return `<div class="msg">${title} · ${t('upn')} ${nx}</div><div class="stg"><i style="width:${Math.min(100, Math.max(0, p))}%"></i></div>`;
+}
+let MAP_PAGE = -1;
+function mapHtml(){
+  const maxLvl = S.level;
+  const maxPage = Math.floor((maxLvl - 1) / 10);
+  if (MAP_PAGE < 0 || MAP_PAGE > maxPage) {
+    MAP_PAGE = maxPage;
+  }
+  const s = MAP_PAGE * 10 + 1;
+  const curPage = MAP_PAGE;
+  
+  const navHtml = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:6px">
+    <button id="mp_p" style="padding:5px 12px;font-size:13px;border-radius:10px;background:#ffffff;color:#000000;font-weight:800;border:2px solid #000000" ${curPage > 0 ? '' : 'disabled style="opacity:0.35;border-color:#aaa"'}>◀ ${LANG==='hi'?'पिछला':'Prev'}</button>
+    <div style="text-align:center;flex:1">
+      <div style="font-weight:800;font-size:14px;color:#1a1a1a">${s > 200 ? '♾️ ' : ''}${LANG==='hi'?'लेवल':'Level'} ${s} – ${s+9}</div>
+      ${curPage !== maxPage ? `<button id="mp_cur" style="font-size:11px;background:#ff4d6d;color:#ffffff;padding:2px 8px;border-radius:6px;font-weight:800;border:none;margin-top:2px;cursor:pointer">🎯 ${LANG==='hi'?'लेवल '+maxLvl+' पर जाएँ':'Go to Level '+maxLvl}</button>` : ''}
+    </div>
+    <button id="mp_n" style="padding:5px 12px;font-size:13px;border-radius:10px;background:#ffffff;color:#000000;font-weight:800;border:2px solid #000000" ${curPage < maxPage ? '' : 'disabled style="opacity:0.35;border-color:#aaa"'}>${LANG==='hi'?'अगला':'Next'} ▶</button>
+  </div>`;
+
+  const rows = [[0,1,2,3,4],[9,8,7,6,5]].map(r=>`<div class="mr">${r.map(o=>{
+    const l = s + o;
+    const st = (S.lst || {})[l] || 0;
+    const c = l < S.level ? 'dn' : l === S.level ? 'cur' : 'lk';
+    const isLocked = l > S.level;
+    const starLabel = st > 0 ? '★'.repeat(st) : '✔';
+    return `<button class="nd ${c}" data-l="${l}" ${isLocked ? 'disabled' : ''} title="${LANG==='hi'?'लेवल':'Level'} ${l}">
+      ${isLocked ? '🔒' : (l === S.level ? '▶' : starLabel)}
+      <small>${l}</small>
+    </button>`;
+  }).join('')}</div>`).join('');
+
+  return navHtml + rows;
+}
+function scene(){
+ const L=Math.min(stage(S.level), 5),e=[],P=s=>e.push(s);
+ P('<defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4dabf7"/><stop offset="1" stop-color="#d0ebff"/></linearGradient><pattern id="awn" width="24" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#e03131"/><rect x="12" width="12" height="12" fill="#fff"/></pattern></defs><rect width="360" height="200" fill="url(#sk)"/><circle cx="320" cy="30" r="15" fill="#ffe066"/><text x="30" y="38" font-size="22">☁️</text><text x="210" y="26" font-size="18">☁️</text><rect y="146" width="360" height="54" fill="#d4a762"/><rect y="146" width="360" height="5" fill="#b98a47"/>');
+ if(L===4)P('<text x="6" y="112" font-size="46">🌳</text><text x="318" y="112" font-size="40">🌴</text>');
+ if(L===0)P('<path d="M98 94 Q160 50 222 94Z" fill="#f03e3e"/><rect x="158" y="92" width="4" height="34" fill="#1a1a1a"/><rect x="100" y="122" width="120" height="24" rx="4" fill="#8d5524"/><rect x="100" y="122" width="120" height="6" fill="#a9703a"/><circle cx="120" cy="150" r="13" fill="#3b2a1a"/><circle cx="200" cy="150" r="13" fill="#3b2a1a"/><circle cx="120" cy="150" r="5" fill="#ced4da"/><circle cx="200" cy="150" r="5" fill="#ced4da"/><text x="112" y="119" font-size="24">🫖</text><text x="150" y="119" font-size="22">☕</text><text x="184" y="119" font-size="22">🥟</text>');
+ if(L>=1&&L<=3){const w=[0,150,196,240][L],x=180-w/2,it=['🫖','☕','🥟','🍩','🥭','🫓'];
+  P(`<rect x="${x}" y="88" width="6" height="60" fill="#1a1a1a"/><rect x="${x+w-6}" y="88" width="6" height="60" fill="#1a1a1a"/>`);
+  P(L===1?`<path d="M${x-12} 90 L${x+w/2} 62 L${x+w+12} 90Z" fill="#868e96"/>`:`<path d="M${x-12} 90 L${x+w/2} 58 L${x+w+12} 90Z" fill="#c92a2a"/><rect x="${x-8}" y="88" width="${w+16}" height="13" fill="url(#awn)"/><rect x="150" y="71" width="60" height="15" rx="3" fill="#fff3bf" stroke="#5c3d1e"/><text x="180" y="82" font-size="11" text-anchor="middle" fill="#1a1a1a" font-weight="bold">${LANG==='hi'?'चाय':'CHAI'}</text>`);
+  P(`<rect x="${x}" y="122" width="${w}" height="26" fill="#8d5524"/><rect x="${x-5}" y="117" width="${w+10}" height="7" rx="2" fill="#c68642"/>`);
+  for(let i=0;i<L+2;i++)P(`<text x="${x+8+i*30}" y="114" font-size="22">${it[i%6]}</text>`);
+  if(L>=2)P(`<rect x="${x-40}" y="132" width="32" height="6" fill="#a9703a"/><rect x="${x-36}" y="138" width="4" height="10" fill="#1a1a1a"/>`);
+  if(L>=3)P(`<rect x="${x+w+8}" y="132" width="32" height="6" fill="#a9703a"/><rect x="${x+w+12}" y="138" width="4" height="10" fill="#1a1a1a"/><text x="${x+w+10}" y="146" font-size="1">.</text>`+Array.from({length:9},(_,i)=>`<circle cx="${x-8+i*(w+16)/8}" cy="104" r="3" fill="#ffe066"/>`).join(''));
+ }
+ if(L===4)P(`<rect x="50" y="60" width="260" height="88" fill="#e8590c"/><rect x="50" y="52" width="260" height="12" fill="#c92a2a"/><rect x="50" y="64" width="260" height="14" fill="url(#awn)"/><rect x="82" y="90" width="80" height="50" fill="#d0ebff" stroke="#5c3d1e" stroke-width="3"/><rect x="200" y="92" width="40" height="56" fill="#8d5524"/><rect x="258" y="90" width="34" height="34" fill="#d0ebff" stroke="#5c3d1e" stroke-width="3"/><rect x="120" y="30" width="120" height="20" rx="4" fill="#fff3bf" stroke="#5c3d1e" stroke-width="2"/><text x="180" y="45" font-size="13" text-anchor="middle" fill="#1a1a1a" font-weight="bold">${LANG==='hi'?'तपरी कैफ़े':'TAPRI CAFE'}</text><text x="88" y="130" font-size="20">☕🥟🍩</text><text x="14" y="148" font-size="22">🪑</text><text x="320" y="148" font-size="22">🪑</text>`);
+ if(L===5){[14,126,238].forEach((x,k)=>P(`<rect x="${x}" y="88" width="5" height="60" fill="#1a1a1a"/><rect x="${x+90}" y="88" width="5" height="60" fill="#1a1a1a"/><rect x="${x-4}" y="82" width="104" height="14" fill="url(#awn)"/><rect x="${x}" y="122" width="95" height="26" fill="#8d5524"/><rect x="${x-3}" y="118" width="101" height="6" fill="#c68642"/><text x="${x+8}" y="114" font-size="22">${['☕🥟','🍩🥭','🍢🫓'][k]}</text>`));
+  P(`<rect x="100" y="28" width="160" height="22" rx="5" fill="#fff3bf" stroke="#5c3d1e" stroke-width="2"/><text x="180" y="44" font-size="14" text-anchor="middle" fill="#1a1a1a" font-weight="bold">${LANG==='hi'?'फ़ूड स्ट्रीट':'FOOD STREET'}</text>`+Array.from({length:19},(_,i)=>`<circle cx="${i*20}" cy="${68+Math.sin(i)*3}" r="3" fill="${['#ffe066','#ff6b6b','#69db7c'][i%3]}"/>`).join(''))}
+ const n=[1,2,3,5,6,8][L];for(let i=0;i<n;i++)P(`<text x="${14+i*(320/n)}" y="178" font-size="26">${CUST[(i*5+L)%CUST.length]}</text>`);
+ S.up.forEach((u,k)=>P(`<text x="${6+k*20}" y="196" font-size="14">${UP[u][0]}</text>`));
+ if(fest())P(`<text x="300" y="70" font-size="26">${fest()[0]}</text>`);
+ return `<svg viewBox="0 0 360 200" role="img" aria-label="tapri">${e.join('')}</svg>`}
+function trayRect(i){const e=document.querySelector(`.tb[data-i="${i}"]`);return e?e.getBoundingClientRect():null}
+function fly(f){const e=document.querySelector(`.tb[data-i="${f.j}"]`);if(!f.r0||!e||!e.animate)return;const its=e.querySelectorAll('.it');
+ for(let q=0;q<f.k;q++){const dst=its[f.m0+q];if(!dst)continue;dst.style.visibility='hidden';const d=dst.getBoundingClientRect(),x0=f.r0.left+f.r0.width/2-19,y0=f.r0.bottom-8-38*(f.n0-q),x1=d.left+d.width/2-19,y1=d.top;
+  const s=document.createElement('div');s.className='fl';s.textContent=ITEMS[f.x];document.body.appendChild(s);
+  // Ultra-snappy 210ms duration with fast curve (2x faster than before)
+  const a=s.animate([{transform:`translate(${x0}px,${y0}px)`},{transform:`translate(${(x0+x1)/2}px,${Math.min(y0,y1)-40}px) scale(1.15) rotate(-6deg)`},{transform:`translate(${x1}px,${y1}px)`}],{duration:130,delay:q*25,easing:'cubic-bezier(0.2, 0.9, 0.3, 1)',fill:'both'});
+  a.onfinish=()=>{s.remove();dst.style.visibility='visible'}}}
+
+boot();
+</script></body></html>

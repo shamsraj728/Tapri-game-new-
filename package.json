@@ -1,0 +1,15 @@
+{
+  "name": "tapri-game",
+  "private": true,
+  "version": "1.4.0",
+  "description": "Tapri Game - Authentic Indian Chai Stall Puzzle Game",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@vercel/blob": "2.8.1"
+  }
+}
